@@ -1,3 +1,29 @@
+/* ==========================================================================
+   PROGRESS BARS
+   ========================================================================== */
+
+.progress {
+    height: 38px;
+    width: 38px;
+    display: inline-block;
+    background: #f1f1f1;
+}
+.progress > svg {
+    height: 100%;
+    display: block;
+
+}
+
+
+
+
+
+
+
+
+
+
+
 /*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
 
 /*
