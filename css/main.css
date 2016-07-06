@@ -1,20 +1,39 @@
+@font-face {
+  font-family: 'Helvetica Neue Bold';
+  src: url('../fonts/helvetica-neue-bold.ttf'); /* IE9 Compat Modes */
+  src: url('../fonts/helvetica-neue-bold.ttf')  format('truetype');
+}
+
+
 /* ==========================================================================
    PROGRESS BARS
    ========================================================================== */
 
-.progress {
+.month {
     height: 38px;
     width: 38px;
     display: inline-block;
     background: #f1f1f1;
+    border-radius: 50%;
+    position: relative;
 }
-.progress > svg {
+.month > svg {
     height: 100%;
     display: block;
 
 }
 
-
+.month__bal {
+  color: #2f2f2f;
+  font-family: 'Helvetica Neue Bold', sans-serif;
+  font-weight: bold;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  padding-bottom: 1px;
+  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+}
 
 
 
