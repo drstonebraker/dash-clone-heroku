@@ -13,13 +13,20 @@
   min-height: 120px;
   background: #f1f1f1;
   font-family: 'Helvetica Neue Bold', sans-serif;
+  font-size: 9px;
+  line-height: 10px;
 }
+
+/* ==========================================================================
+   DESIGNLEDGE LINK
+   ========================================================================== */
 
 .dl-link {
   position: relative;
   display:block;
   height: 25px;
   background: #2f2f2f;
+  margin-bottom: 10px;
 }
 
 .dl-link__logo {
@@ -41,11 +48,14 @@
   display:block;
 }
 
+/* ==========================================================================
+   DASHBOARD LABELS
+   ========================================================================== */
+
 .progress-label {
-  font-size: 9px;
   display: block;
   width: 83px;
-  margin: 0 auto;
+  margin: 0 auto 10px auto;
 }
 
 .progress-label__glyph {
@@ -55,16 +65,35 @@
 .progress-label__text {
   display: inline-block;
   vertical-align: middle;
+  text-align: center;
   width: 53px;
-  line-height: 10px;
-  margin-left: 7px;
+  margin: 0 0 0 7px;
+}
+
+/* ==========================================================================
+   MONTHS
+   ========================================================================== */
+ .all-months {
+   text-align: center;
+ }
+
+.all-months__spacer {
+  display: inline-block;
+  width: 15%;
+  min-width: 38px;
+  margin-bottom: 10px;
+}
+
+.month__name {
+  color: #929292;
+  margin: 0 0 6px 0;
 }
 
 /* ==========================================================================
    PROGRESS BARS
    ========================================================================== */
 
-.month {
+.month__circle {
     height: 38px;
     width: 38px;
     display: inline-block;
@@ -72,7 +101,7 @@
     border-radius: 50%;
     position: relative;
 }
-.month > svg {
+.month__circle > svg {
     height: 100%;
     display: block;
 
@@ -84,6 +113,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
+  font-size: initial;
   padding-bottom: 1px;
   transform: translate(-50%,-50%);
   -webkit-transform: translate(-50%,-50%);

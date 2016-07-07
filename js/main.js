@@ -14,7 +14,7 @@ window.onload = function onLoad() {
   //USE THESE TO CONFIGURE DASHBOARD FOR INDIVIDUAL CLIENT
   var startingMonth = 0; //jan=0, feb=1...
   var monthlyHours = 6;
-  var monthlyBal = {
+  var monthlyBal = { //this can be changed to an array but is an object to easier viewing/editing
     0: 0,
     1: 1,
     2: 2,
@@ -64,6 +64,28 @@ window.onload = function onLoad() {
 
     //Animate circular progress bars
     circle.animate(monthlyBal[monthlyBalIteration]/monthlyHours);
+
+    function getMonthName () {
+      switch (monthlyBalIteration) {
+        case 0: return 'JAN';
+        case 1: return 'FEB';
+        case 2: return 'MAR';
+        case 3: return 'APR';
+        case 4: return 'MAY';
+        case 5: return 'JUN';
+        case 6: return 'JUL';
+        case 7: return 'AUG';
+        case 8: return 'SEP';
+        case 9: return 'OCT';
+        case 10: return 'NOV';
+        case 11: return 'DEC';
+        default: return 'err'
+      }
+    }
+
+    var monthName = getMonthName();
+
+    $('#month__name' + i).html(monthName);
   }
 
   $.each($('.month'), updateMonths)
