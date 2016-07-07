@@ -91,4 +91,6 @@ window.onload = function onLoad() {
 
   $.each($('.month'), updateMonths)
 
+  $('#annual-progress__tot-hours').html(annualHours);
+
 };
