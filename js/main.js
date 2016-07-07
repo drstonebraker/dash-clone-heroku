@@ -34,6 +34,9 @@ window.onload = function onLoad() {
   var currentMonth = today.getMonth();
 
   function updateMonths (i, val) {
+    //set monthlyBalIteration to appropriate month based on client's starting month
+    var monthlyBalIteration = (startingMonth + i) < 12 ? startingMonth + i : startingMonth + i - 12;
+
     var circle = new ProgressBar.Circle('#month' + i, {
         strokeWidth: 15,
         color: '#9bd500',
@@ -49,18 +52,16 @@ window.onload = function onLoad() {
         step: function(state, circle) {
 
           var value = Math.round(circle.value() * monthlyHours);
-          if (value === 0) {
+          if (value === 0 && monthlyBalIteration <= currentMonth && monthlyBalIteration >= startingMonth) { //if hours used is 0 and month has already occured in current billing year.
             circle.setText('0');
+          } else if (value === 0) {
+            circle.setText('-');
           } else {
             circle.setText(value);
           }
 
         }
     });
-
-
-    //set monthlyBalIteration to appropriate month based on client's starting month
-    var monthlyBalIteration = (startingMonth + i) < 12 ? startingMonth + i : startingMonth + i - 12;
 
     //Animate circular progress bars
     circle.animate(monthlyBal[monthlyBalIteration]/monthlyHours);
