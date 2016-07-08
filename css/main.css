@@ -15,7 +15,6 @@
   font-family: 'Helvetica Neue Bold', sans-serif;
   font-size: .5em;
   line-height: 10px;
-  padding-bottom: 25px;
 }
 
 /* ==========================================================================
@@ -164,7 +163,7 @@
   width: 80%;
   min-width: 210px;
   background: #dfdfdf;
-  margin: 0 auto;
+  margin: 0 auto 25px auto;
   font-size: 1.5em;
 }
 
@@ -223,9 +222,70 @@
 
 }
 
+/* ==========================================================================
+   BACKUP
+   ========================================================================== */
+.backup {
+  display: inline-block;
+  width: 50%;
+  height: 60px;
+  background: #dfdfdf;
+  text-align: center;
+  padding-top: 12px;
+  box-sizing: border-box;
+
+}
+
+.backup-label {
+  display: inline
+  margin: 0 auto;
+
+}
+
+.backup-label__glyph {
+  fill: #a7a7a7;
+  display: inline;
+}
+
+.backup-label__text {
+  color: #a7a7a7;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 0 4px;
+}
+
+.backup__datetime {
+  display: block;
+  text-align: center;
+  font-size: 1.6em;
+  color: #353535;
+  margin-top: 7px;
+}
+
+
+/* ==========================================================================
+   BENEFITS
+   ========================================================================== */
+.benefits {
+  display: inline-block;
+  width: calc(50% - 1px);
+  height: 60px;
+  background: #dfdfdf;
+  cursor: pointer;
+  text-decoration: none;
+  margin-left: 1px;
+}
 
 
 
+ /* ==========================================================================
+    PRIORITY ALERT
+    ========================================================================== */
+
+.alert {
+  height: 60px;
+  background: #2f2f2f;
+}
 
 /*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
 
