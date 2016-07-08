@@ -16,27 +16,27 @@ window.onload = function onLoad() {
      USE THESE VARS TO CONFIGURE DASHBOARD FOR INDIVIDUAL CLIENT
      ========================================================================== */
 
-  var startingMonth = 0; //jan=0, feb=1...
+  var startingMonth = 3; //jan=0, feb=1...
   var monthlyHours = 6;
   var monthlyBal = { //this can be changed to an array but is an object to easier viewing/editing
     0: 0,
-    1: 1,
-    2: 2,
-    3: 3,
-    4: 4,
-    5: 5,
+    1: 0,
+    2: 0,
+    3: 4,
+    4: 0,
+    5: 2,
     6: 6,
-    7: 0,
+    7: 5,
     8: 0,
     9: 0,
     10: 0,
     11: 0
   };
   var annualHours=36;
-  var annualBal=16;
+  var annualBal=17;
   var today = new Date();
   var currentMonth = today.getMonth();
-  var animationDuration = 1300;
+  var animationDuration = 1500;
   var animationEasing = "easeOut";
 
 

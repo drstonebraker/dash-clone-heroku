@@ -129,18 +129,31 @@
   height: 8px;
   width: 80%;
   min-width: 210px;
-  border-radius: 4px;
   background: #dfdfdf;
   margin: 0 auto;
   font-size: 1.5em;
 }
 
+.annual-progress::before {
+  height: 8px;
+  width: 12px;
+  background: #9bd500;
+  border-radius: 4px 0 0 4px;
+  content: '';
+  position: absolute;
+  display:block;
+  left: -12px;
+  top: 0px;
+  z-index: 0;
+
+}
+
+
+
 .annual-progress > svg {
     height: 100%;
     display: block;
     vertical-align: top;
-    border-radius: 4px;
-
 }
 
 .annual-progress__used-hours {
