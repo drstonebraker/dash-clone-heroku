@@ -15,7 +15,7 @@
   font-family: 'Helvetica Neue Bold', sans-serif;
   font-size: .5em;
   line-height: 10px;
-  padding-bottom: 20px;
+  padding-bottom: 25px;
 }
 
 /* ==========================================================================
@@ -59,6 +59,10 @@
   margin: 0 auto 10px auto;
 }
 
+.progress-label--annual {
+  margin-bottom: 20px;
+}
+
 .progress-label__glyph {
   display: inline;
 }
@@ -83,6 +87,36 @@
   width: 15%;
   min-width: 38px;
   margin-bottom: 10px;
+  position: relative;
+  height: 76px;
+  vertical-align: bottom;
+}
+
+.month {
+  padding-top: 10px;
+}
+
+.month--current {
+  background:#fafafa;
+  width: 60px;
+  height: 66px;
+  border-radius: 0 0 30px 30px;
+  box-shadow: 0px 1px 2px #c8c8c8;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin-left: -30px;
+}
+
+@media only screen
+  and (max-width: 420px) {
+
+  .month--current {
+    width: 50px;
+    border-radius: 0 0 25px 25px;
+    margin-left: -25px;
+  }
+
 }
 
 .month__name {

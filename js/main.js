@@ -77,7 +77,7 @@ window.onload = function onLoad() {
 
 
     //create circle progress bar
-    var circle = new ProgressBar.Circle('#month' + i, {
+    var circle = new ProgressBar.Circle('#month__circle--' + i, {
         strokeWidth: 15,
         color: '#9bd500',
         duration: animationDuration,
