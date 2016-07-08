@@ -39,10 +39,13 @@ window.onload = function onLoad() {
   var animationDuration = 1500;
   var animationEasing = "easeOut";
 
+  //highlight current month
+  $('#month--' + (currentMonth - startingMonth)).addClass('month--current');
+
 
 
   /* ==========================================================================
-     UPDATE MONTH DATA
+     UPDATE CLIENT MONTH DATA
      -set monthly used hours
      -set month names
      -animate circular progress bars
@@ -74,7 +77,6 @@ window.onload = function onLoad() {
     var monthName = getMonthName();
 
     $('#month__name' + i).html(monthName);
-
 
     //create circle progress bar
     var circle = new ProgressBar.Circle('#month__circle--' + i, {
