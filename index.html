@@ -170,7 +170,10 @@
 
           </div><!--end .backup
 
-          --><button class="benefits">
+          --><a href="#benefits-modal" rel="modal:open" class="benefits">
+            <div id="benefits-modal" style="display:none">
+              <p class="benefits-modal__text" id="benefits-modal__text"></p>
+            </div>
             <div class="benefits-label">
               <svg class="benefits-label__glyph"
                   version="1.1" baseProfile="tiny"
@@ -197,7 +200,7 @@
 
             </div>
 
-          </button><!-- end .benefits
+          </a><!-- end .benefits
 
           --><div class="alert">
 
@@ -212,6 +215,9 @@
         <script>window.jQuery || document.write('<script   src="https://code.jquery.com/jquery-3.0.0.js"   integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="   crossorigin="anonymous"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+        <link rel="stylesheet" href="css/jquery.modal.css" type="text/css" media="screen" />
+
+
 
     </body>
 </html>

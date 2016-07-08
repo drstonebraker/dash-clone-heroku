@@ -39,6 +39,7 @@ window.onload = function onLoad() {
   var currentMonth = today.getMonth();
   var animationDuration = 1500;
   var animationEasing = "easeOut";
+  //$('#benefits-modal__text').html(''); //uncomment this and add client's description of monthly benefits
   //end of configurable variables
 
   //highlight current month

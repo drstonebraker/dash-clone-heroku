@@ -275,6 +275,7 @@
   border:none;
   -webkit-appearance: initial;
   padding: 0px;
+  text-decoration: none;
 }
 
 .benefits:focus {
@@ -283,6 +284,7 @@
 
 .benefits-label {
   text-align: center;
+  margin-top: 20px;
 }
 
 .benefits-label__glyph {
@@ -308,6 +310,11 @@
 
 .benefits:hover .benefits-label__glyph {
   fill: white;
+}
+
+.benefits-modal__text {
+  max-height: 70vh;
+  overflow-y: auto;
 }
 
 
