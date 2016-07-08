@@ -35,12 +35,56 @@ window.onload = function onLoad() {
   var annualHours=36;
   var annualBal=17;
   var today = new Date();
+  var lastBackup = new Date('2016-12-14T07:32:00');
   var currentMonth = today.getMonth();
   var animationDuration = 1500;
   var animationEasing = "easeOut";
+  //end of configurable variables
 
   //highlight current month
   $('#month--' + (currentMonth - startingMonth)).addClass('month--current');
+
+  //fill last backup date & time
+  function getlastBackupString(date) {
+    var amOrPm;
+    var twelveHour;
+    var doubleDigitMins;
+
+    //set AM or PM and convert .getHours to 12-hour time.
+
+    console.log(date.getHours());
+    if (date.getHours() > 11){
+      amOrPm = 'PM';
+      twelveHour = (date.getHours() > 12) ? date.getHours() - 12 : date.getHours();
+    } else if (date.getHours() == 0) {
+      amOrPm = 'AM';
+      twelveHour = 12;
+    } else {
+      amOrPm = 'AM';
+      twelveHour = date.getHours();
+    }
+
+    //ensure minutes are double digits
+    if (date.getMinutes() < 10) {
+      doubleDigitMins = '0' + date.getMinutes();
+    } else {
+      doubleDigitMins = '' + date.getMinutes();
+    }
+
+
+    var lastBackupString =
+      '' + (date.getMonth() + 1) + '/'
+      + (date.getDate() + 1) + '/'
+      + date.getFullYear().toString().slice(-2) + ' · '
+      + twelveHour + ':'
+      + doubleDigitMins
+      + amOrPm;
+
+    return lastBackupString;
+  }
+
+  $('#backup__datetime').html(getlastBackupString(lastBackup));
+
 
 
 
