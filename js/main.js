@@ -1,5 +1,5 @@
-
-
+//detect IE
+var isIE = /*@cc_on!@*/false || !!document.documentMode;
 
 
 
@@ -85,6 +85,13 @@ window.onload = function onLoad() {
 
   $('#backup__datetime').html(getlastBackupString(lastBackup));
 
+  //set stroke width to 6 if browser is IE (to workaround bug)
+  if (isIE) {
+    var strokeWidth = 6;
+    } else {
+    var strokeWidth = 15;
+  }
+
 
 
 
@@ -124,12 +131,12 @@ window.onload = function onLoad() {
 
     //create circle progress bar
     var circle = new ProgressBar.Circle('#month__circle--' + i, {
-        strokeWidth: 15,
+        strokeWidth: strokeWidth,
         color: '#9bd500',
         duration: animationDuration,
         easing: animationEasing,
         trailColor: '#dfdfdf',
-        trailWidth: 15,
+        trailWidth: strokeWidth,
         text: {
           value: "0",
           className: 'month__bal',
@@ -167,11 +174,11 @@ window.onload = function onLoad() {
   //create linear progress bar
   var line = new ProgressBar.Line('#annual-progress', {
       color: '#9bd500',
-
+      strokeWidth: strokeWidth,
       duration: animationDuration,
       easing: animationEasing,
       trailColor: '#dfdfdf',
-      trailWidth: 15,
+      trailWidth: strokeWidth,
       svgStyle: {width: '100%', height: '100%'},
       text: {
         value: "0",
@@ -194,6 +201,13 @@ window.onload = function onLoad() {
 
       }
   });//end of ProgressBar.Line constructor
+
+  //workaround for progressbar.js IE bug
+  if (isIE) {
+    $('#annual-progress').css('height', '3');
+    $('.annual-progress__used-hours').css('margin-top', '-10px');
+    $('#annual-progress__tot-hours').css('margin-top', '-10px');
+  }
 
   line.animate(annualBal/annualHours, {attachment: $('.annual-progress__used-hours')});
 

@@ -130,7 +130,6 @@
     height: 38px;
     width: 38px;
     display: inline-block;
-    background: #f1f1f1;
     border-radius: 50%;
     position: relative;
 }
@@ -167,7 +166,7 @@
 }
 
 .annual-progress::before {
-  height: 8px;
+  height: inherit;
   width: 12px;
   background: #9bd500;
   border-radius: 4px 0 0 4px;
