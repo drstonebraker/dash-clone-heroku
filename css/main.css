@@ -233,7 +233,7 @@
   text-align: center;
   padding-top: 12px;
   box-sizing: border-box;
-
+  vertical-align: top;
 }
 
 .backup-label {
@@ -274,6 +274,7 @@
   cursor: pointer;
   text-decoration: none;
   margin-left: 1px;
+  vertical-align: top;
 }
 
 
