@@ -258,7 +258,7 @@
   text-align: center;
   font-size: 1.6em;
   color: #353535;
-  margin-top: 7px;
+  margin-top: 4px;
 }
 
 
@@ -271,11 +271,45 @@
   height: 60px;
   background: #dfdfdf;
   cursor: pointer;
-  text-decoration: none;
   margin-left: 1px;
   vertical-align: top;
+  border:none;
+  -webkit-appearance: initial;
+  padding: 0px;
 }
 
+.benefits:focus {
+  outline: none;
+}
+
+.benefits-label {
+  text-align: center;
+}
+
+.benefits-label__glyph {
+  fill: #a7a7a7;
+  display: inline;
+}
+
+.benefits-label__text {
+  color: #a7a7a7;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 0 4px;
+  line-height: 9px;
+}
+
+.benefits:hover {
+  background: #797979;
+}
+
+.benefits:hover .benefits-label__text {
+  color: white;
+}
+
+.benefits:hover .benefits-label__glyph {
+  fill: white;
+}
 
 
  /* ==========================================================================
