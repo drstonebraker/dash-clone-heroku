@@ -33,8 +33,9 @@ var clientData = {
 
 //end of configurable vars
 
-//detect IE
+//detect IE and Edge
 var isIE = /*@cc_on!@*/false || !!document.documentMode;
+var isEdge = !isIE && !!window.StyleMedia;
 
 $( document ).ready(function() {
   $('#alert').click(function(){
@@ -116,7 +117,7 @@ window.onload = function onLoad() {
   $('#backup__datetime').html(getlastBackupString(clientData.lastBackup));
 
   //set stroke width to 6 if browser is IE (to workaround bug)
-  if (isIE) {
+  if (isIE || isEdge) {
     var strokeWidth = 6;
     } else {
     var strokeWidth = 15;
@@ -233,7 +234,7 @@ window.onload = function onLoad() {
   });//end of ProgressBar.Line constructor
 
   //workaround for progressbar.js IE bug
-  if (isIE) {
+  if (isIE || isEdge) {
     $('#annual-progress').css('height', '3');
     $('.annual-progress__used-hours').css('margin-top', '-10px');
     $('#annual-progress__tot-hours').css('margin-top', '-10px');
