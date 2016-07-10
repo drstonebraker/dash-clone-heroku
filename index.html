@@ -246,29 +246,35 @@
           <fieldset class="bug-info">
 
             <label class="bug-info__label" for="whats-happening">What's happening is</label>
-            <textarea name="whats-happening" id="whats-happening" class="bug-info__textarea--whats-happening" required></textarea>
+            <textarea name="whats-happening" id="whats-happening" class="bug-info__textarea bug-info__textarea--whats-happening" required></textarea>
 
             <label class="bug-info__label" for="whats-expected">What's expected to happen is</label>
-            <textarea name="whats-expected" id="whats-expected" class="bug-info__textarea--whats-expected" required></textarea>
+            <textarea name="whats-expected" id="whats-expected" class="bug-info__textarea bug-info__textarea--whats-expected" required></textarea>
 
             <fieldset class="bug-info__frequency">
+
               <legend class="bug-info__label bug-info__label--this-happens">This happens</legend>
+
               <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="every-time" required>
-              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="often" required>
-              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="occasionally" required>
-              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="only-once" required>
-              <button class="bug-info__button bug-info__button--every-time">
+              <button  type="button" class="bug-info__button bug-info__button--every-time" formnovalidate>
                 <label class="bug-info__button-label" for="every-time">EVERY TIME</label>
               </button>
-              <button class="bug-info__button bug-info__button--often">
+
+              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="often" required>
+              <button type="button" class="bug-info__button bug-info__button--often" formnovalidate>
                 <label class="bug-info__button-label" for="often">OFTEN</label>
               </button>
-              <button class="bug-info__button bug-info__button--occasionally">
+
+              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="occasionally" required>
+              <button type="button" class="bug-info__button bug-info__button--occasionally" formnovalidate>
                 <label class="bug-info__button-label" for="occasionally">OCCASIONALLY</label>
               </button>
-              <button class="bug-info__button bug-info__button--only-once">
+
+              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="only-once" required>
+              <button type="button" class="bug-info__button bug-info__button--only-once" formnovalidate>
                 <label class="bug-info__button-label" for="only-once">ONLY ONCE</label>
               </button>
+
             </fieldset>
 
             <fieldset class="bug-info__environment">
@@ -284,7 +290,7 @@
                 <option class="select__option" value="other">OTHER (Please Specify)</option>
               </select>
 
-              <select name="op-sys" class="bug-info__button select select--op-sys" id="" disabled="true" required>
+              <select name="op-sys" class="bug-info__button select select--op-sys" id="" disabled required>
 
                 <option class="select__option" value="win-10">WINDOWS 10</option>
                 <option class="select__option" value="win-8">WINDOWS 8</option>
@@ -330,7 +336,7 @@
                 <option class="select__option" value="browser-other">OTHER (Please Specify)</option>
               </select>
 
-              <button class="bug-info__button bug-info__button--detect">DETECT FOR ME</button>
+              <button type="button" class="bug-info__button bug-info__button--detect"  formnovalidate>DETECT FOR ME</button>
 
             </fieldset>
 
