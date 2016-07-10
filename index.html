@@ -255,22 +255,22 @@
 
               <legend class="bug-info__label bug-info__label--this-happens">This happens</legend>
 
-              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="every-time" required>
+              <input type="radio" name="this-happens" class="bug-info__radio u_hidden" id="every-time" required>
               <button  type="button" class="bug-info__button bug-info__button--every-time" formnovalidate>
                 <label class="bug-info__button-label" for="every-time">EVERY TIME</label>
               </button>
 
-              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="often" required>
+              <input type="radio" name="this-happens" class="bug-info__radio u_hidden" id="often" required>
               <button type="button" class="bug-info__button bug-info__button--often" formnovalidate>
                 <label class="bug-info__button-label" for="often">OFTEN</label>
               </button>
 
-              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="occasionally" required>
+              <input type="radio" name="this-happens" class="bug-info__radio u_hidden" id="occasionally" required>
               <button type="button" class="bug-info__button bug-info__button--occasionally" formnovalidate>
                 <label class="bug-info__button-label" for="occasionally">OCCASIONALLY</label>
               </button>
 
-              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="only-once" required>
+              <input type="radio" name="this-happens" class="bug-info__radio u_hidden" id="only-once" required>
               <button type="button" class="bug-info__button bug-info__button--only-once" formnovalidate>
                 <label class="bug-info__button-label" for="only-once">ONLY ONCE</label>
               </button>
@@ -280,60 +280,67 @@
             <fieldset class="bug-info__environment">
               <legend class="bug-info__label bug-info__label--when-using">When using</legend>
 
-              <select name="device" class="bug-info__button select select--device" id="" required>
-                <option class="select__option" value="pc">MICROSOFT PC</option>
-                <option class="select__option" value="mac">APPLE MAC</option>
-                <option class="select__option" value="android-phone">ANDROID PHONE</option>
-                <option class="select__option" value="android-tablet">ANDROID TABLET</option>                  <option class="select__option" value="iphone">APPLE IPHONE</option>
-                <option class="select__option" value="ipad">APPLE IPAD</option>
-                <option class="select__option" value="win-phone">WINDOWS PHONE</option>
-                <option class="select__option" value="other">OTHER (Please Specify)</option>
-              </select>
+              <input type="hidden" value="">
+              <button type="button" name="device" class="bug-info__button select select--device" id="" required formnovalidate>DEVICE</button>
+              <ul class="select-list select-list--device">
+                <li class="select-list__option" data-value="pc">MICROSOFT PC</li>
+                <li class="select-list__option" data-value="mac">APPLE MAC</li>
+                <li class="select-list__option" data-value="android-phone">ANDROID PHONE</li>
+                <li class="select-list__option" data-value="android-tablet">ANDROID TABLET</li>
+                <li class="select-list__option" data-value="iphone">APPLE IPHONE</li>
+                <li class="select-list__option" data-value="ipad">APPLE IPAD</li>
+                <li class="select-list__option" data-value="win-phone">WINDOWS PHONE</li>
+                <li class="select-list__option" data-value="win-surface">MICROSOFT SURFACE</li>
+                <li class="select-list__option" data-value="other">OTHER (Please Specify)</li>
+              </ul>
+
 
               <select name="op-sys" class="bug-info__button select select--op-sys" id="" disabled required>
 
-                <option class="select__option" value="win-10">WINDOWS 10</option>
-                <option class="select__option" value="win-8">WINDOWS 8</option>
-                <option class="select__option" value="win-7">WINDOWS 7</option>
-                <option class="select__option" value="win-vista">WINDOWS VISTA</option>
-                <option class="select__option" value="win-xp">WINDOWS XP</option>
-                <option class="select__option" value="win-older">OLDER (Please Specify)</option>
+                <li class="select-list__option" data-device="pc win-surface" data-value="win-10">WINDOWS 10</li>
+                <li class="select-list__option" data-device="pc win-surface" data-value="win-8">WINDOWS 8</li>
+                <li class="select-list__option" data-device="pc" data-value="win-7">WINDOWS 7</li>
+                <li class="select-list__option" data-device="pc" data-value="win-vista">WINDOWS VISTA</li>
+                <li class="select-list__option" data-device="pc" data-value="win-xp">WINDOWS XP</li>
+                <li class="select-list__option" data-device="pc" data-value="win-older">OLDER (Please Specify)</li>
 
-                <option class="select__option" value="osx-12">OSX SIERRA</option>
-                <option class="select__option" value="osx-11">OSX EL CAPITAN</option>
-                <option class="select__option" value="osx-10">OSX YOSEMITE</option>
-                <option class="select__option" value="osx-9">OSX MAVERICKS</option>
-                <option class="select__option" value="osx-8">OSX MOUNTAIN LION</option>
-                <option class="select__option" value="osx-older">OLDER (Please Specify)</option>
+                <li class="select-list__option" data-device="mac" data-value="osx-12">OSX SIERRA</li>
+                <li class="select-list__option" data-device="mac" data-value="osx-11">OSX EL CAPITAN</li>
+                <li class="select-list__option" data-device="mac" data-value="osx-10">OSX YOSEMITE</li>
+                <li class="select-list__option" data-device="mac" data-value="osx-9">OSX MAVERICKS</li>
+                <li class="select-list__option" data-device="mac" data-value="osx-8">OSX MOUNTAIN LION</li>
+                <li class="select-list__option" data-device="mac" data-value="osx-older">OLDER (Please Specify)</li>
 
-                <option class="select__option" value="android-6">MARSHMALLOW</option>
-                <option class="select__option" value="android-5">LOLLIPOP</option>
-                <option class="select__option" value="android-4-4">KITKAT</option>
-                <option class="select__option" value="android-4-3">JELLY BEAN</option>
-                <option class="select__option" value="android-older">OLDER (Please Specify)</option>
+                <li class="select-list__option" data-device="android-phone android-tablet" data-value="android-6">MARSHMALLOW</li>
+                <li class="select-list__option" data-device="android-phone android-tablet" data-value="android-5">LOLLIPOP</li>
+                <li class="select-list__option" data-device="android-phone android-tablet" data-value="android-4-4">KITKAT</li>
+                <li class="select-list__option" data-device="android-phone android-tablet" data-value="android-4-3">JELLY BEAN</li>
+                <li class="select-list__option" data-device="android-phone android-tablet" data-value="android-older">OLDER (Please Specify)</li>
 
-                <option class="select__option" value="ios-10">IOS 10</option>
-                <option class="select__option" value="ios-9">IOS 9</option>
-                <option class="select__option" value="ios-8">IOS 8</option>
-                <option class="select__option" value="ios-7">IOS 7</option>
-                <option class="select__option" value="ios-6">IOS 6</option>
-                <option class="select__option" value="ios-older">OLDER (Please Specify)</option>
+                <li class="select-list__option" data-device="iphone ipad" data-value="ios-10">IOS 10</li>
+                <li class="select-list__option" data-device="iphone ipad" data-value="ios-9">IOS 9</li>
+                <li class="select-list__option" data-device="iphone ipad" data-value="ios-8">IOS 8</li>
+                <li class="select-list__option" data-device="iphone ipad" data-value="ios-7">IOS 7</li>
+                <li class="select-list__option" data-device="iphone ipad" data-value="ios-6">IOS 6</li>
+                <li class="select-list__option" data-device="iphone ipad" data-value="ios-older">OLDER (Please Specify)</li>
 
-                <option class="select__option" value="win-mob-10">WINDOWS 10 MOBILE</option>
-                <option class="select__option" value="win-mob-8">WINDOWS PHONE 8</option>
-                <option class="select__option" value="win-mob-7">WINDOWS PHONE 7.10</option>
-                <option class="select__option" value="win-mob-rt">WINDOWS RT</option>
-                <option class="select__option" value="win-mob-older">OLDER (Please Specify)</option>
+                <li class="select-list__option" data-device="win-phone" data-value="win-mob-10">WINDOWS 10 MOBILE</li>
+                <li class="select-list__option" data-device="win-phone" data-value="win-mob-8">WINDOWS PHONE 8</li>
+                <li class="select-list__option" data-device="win-phone" data-value="win-mob-7">WINDOWS PHONE 7.10</li>
+                <li class="select-list__option" data-device="win-surface" data-value="win-mob-rt">WINDOWS RT</li>
+                <li class="select-list__option" data-device="win-phone" data-value="win-mob-older">OLDER (Please Specify)</li>
+
+                <li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="op-sys-other">OTHER (Please Specify)</li>
               </select>
 
               <select name="browser" class="bug-info__button select select--browser" id="" disabled="true" required>
-                <option class="select__option" value="chrome">CHROME</option>
-                <option class="select__option" value="firefox">FIREFOX</option>
-                <option class="select__option" value="safari">SAFARI</option>
-                <option class="select__option" value="edge">MICROSOFT EDGE</option>                  <option class="select__option" value="ie-11">INTERNET EXPLORER 9-11</option>
-                <option class="select__option" value="ie-8">INTERNET EXPLORER-OLDER</option>
-                <option class="select__option" value="opera">OPERA</option>
-                <option class="select__option" value="browser-other">OTHER (Please Specify)</option>
+                <li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="chrome">CHROME</li>
+                <li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="firefox">FIREFOX</li>
+                <li class="select-list__option" data-device="mac iphone ipad" data-value="safari">SAFARI</li>
+                <li class="select-list__option" data-device="pc win-phone win-surface" data-value="edge">MICROSOFT EDGE</li>                  <li class="select-list__option" data-device="pc win-phone win-surface" data-value="ie-11">INTERNET EXPLORER 9-11</li>
+                <li class="select-list__option" data-device="pc win-phone win-surface" data-value="ie-8">INTERNET EXPLORER-OLDER</li>
+                <li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="opera">OPERA</li>
+                <li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="browser-other">OTHER (Please Specify)</li>
               </select>
 
               <button type="button" class="bug-info__button bug-info__button--detect"  formnovalidate>DETECT FOR ME</button>
