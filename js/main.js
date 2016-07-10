@@ -80,19 +80,25 @@ window.onload = function onLoad() {
   //fill last backup date & time
   function getlastBackupString(date) {
     var amOrPm;
+    var fullHour = date.getHours();
     var twelveHour;
     var doubleDigitMins;
 
+    if (isIE || isEdge) {
+      var timezoneDiff = Math.floor(date.getTimezoneOffset() / 60);
+      fullHour -= timezoneDiff; 
+    }
+
     //set AM or PM and convert .getHours to 12-hour time.
-    if (date.getHours() > 11){
+    if (fullHour > 11){
       amOrPm = 'PM';
-      twelveHour = (date.getHours() > 12) ? date.getHours() - 12 : date.getHours();
-    } else if (date.getHours() == 0) {
+      twelveHour = (fullHour > 12) ? fullHour - 12 : fullHour;
+    } else if (fullHour == 0) {
       amOrPm = 'AM';
       twelveHour = 12;
     } else {
       amOrPm = 'AM';
-      twelveHour = date.getHours();
+      twelveHour = fullHour;
     }
 
     //ensure minutes are double digits
