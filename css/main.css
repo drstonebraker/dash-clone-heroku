@@ -9,7 +9,8 @@
 
 .dashboard {
   display: block;
-  margin: 10px 10px 10px 10px;
+  position: relative;
+  margin: 10px 10px 0 10px;
   min-height: 120px;
   background: #f1f1f1;
   font-family: 'Helvetica Neue Bold', sans-serif;
@@ -156,7 +157,7 @@
    ANNUAL PROGRESS BAR
    ========================================================================== */
 .annual-section {
-  margin-bottom: 25px;
+  padding-bottom: 25px;
 }
 
 .annual-progress {
@@ -759,76 +760,174 @@ textarea {
    ========================================================================== */
 
 
-   @media only screen and (min-width : 768px) {
-     .dl-link {
-       margin-bottom: 0px;
-     }
+@media only screen and (min-width : 768px) {
+  .dl-link {
+   margin-bottom: 0px;
+  }
 
-     .progress-label {
-       display: inline-block;
-       margin: 0 8px 0 calc(4% - 8px);
-       text-align: left;
-       vertical-align: middle;
-       min-width: 77px;
-       width:10%
-     }
+  .progress-label {
+   display: inline-block;
+   margin: 0 8px 0 calc(4% - 8px);
+   text-align: left;
+   vertical-align: super;
+   min-width: 77px;
+   width:10%
+  }
 
-     .progress-label__text {
-       text-align: left;
-     }
+  .progress-label__text {
+   text-align: left;
+  }
 
-     .month-section {
+  .month-section {
 
-     }
+  }
 
-     .all-months {
-      display: inline-block;
-      vertical-align: middle;
-      min-width: 625px;
-      width: 83%;
-     }
+  .all-months {
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 625px;
+  width: 83%;
+  }
 
-     .all-months__spacer {
-       width: 8%;
-       min-width: 50px;
-     }
-
-
-     @media only screen
-       and (max-width: 850px) {
-       .month--current {
-         width: 50px;
-         border-radius: 0 0 25px 25px;
-         margin-left: -25px;
-       }
-     }
-
-     .annual-section {
-      margin-bottom: 16px;
-     }
-
-     .annual-progress {
-       width: calc(83% - 48px);
-       min-width: 577px;
-       display:inline-block;
-       vertical-align: middle;
-       margin-left: 24px;
-       right:0px;
-     }
-
-     .backup {
-       width: 33.3%;
-     }
-
-     .benefits {
-       width: calc(33.3% - 1px);
-     }
-
-     .alert {
-       display: inline-block;
-       width: 33.3%;
-     }
+  .all-months__spacer {
+   width: 8%;
+   min-width: 50px;
+   margin-bottom: 2px;
+  }
 
 
-
+  @media only screen
+   and (max-width: 850px) {
+   .month--current {
+     width: 50px;
+     border-radius: 0 0 25px 25px;
+     margin-left: -25px;
    }
+  }
+
+  .annual-section {
+  padding-bottom: 20px;
+  }
+
+  .annual-progress {
+   width: calc(83% - 48px);
+   min-width: 577px;
+   display:inline-block;
+   vertical-align: middle;
+   margin-left: 24px;
+   right:0px;
+  }
+
+  .backup {
+   width: 33.3%;
+  }
+
+  .benefits {
+   width: calc(33.3% - 1px);
+  }
+
+  .alert {
+   display: inline-block;
+   width: 33.3%;
+  }
+
+}
+
+
+@media only screen and (min-width : 1025px) {
+
+  .dashboard {
+    padding: 0 23% 0 25px;
+  }
+
+  .dl-link {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    height: 100%;
+    width: 25px;
+  }
+
+  @media only screen
+   and (max-width: 1100px) {
+   .month--current {
+     width: 50px;
+     border-radius: 0 0 25px 25px;
+     margin-left: -25px;
+   }
+  }
+
+  .grey-boxes {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 100%;
+    width: 23%;
+  }
+
+  .backup {
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    height: 50%;
+    width: 65%;
+  }
+
+  .benefits {
+    position:absolute;
+    left: 0px;
+    bottom: 0px;
+    height: calc(50% - 1px);
+    width: 65%;
+    margin-left: 0px;
+  }
+
+  .alert {
+    position:absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: 100%;
+    width: 35%;
+  }
+
+  .alert-glyph {
+    display:block;
+    margin: 0 auto;
+  }
+
+  .alert-text {
+    display:block;
+    text-align: center;
+    height: 20px;
+  }
+
+  .alert-text__break {
+    display: block;
+  }
+
+  .alert-text__priority {
+    width:100%;
+  }
+
+  .alert-text__close {
+    width:100%;
+    top: -30px;
+    left: 0px !important;
+  }
+
+  .alert-glyph--x {
+    transform: translateY(10px) !important;
+  }
+
+  .alert-text__priority-x {
+    top: 20px;
+  }
+
+  .alert-text__close-x {
+    top: -15px;
+  }
+
+}

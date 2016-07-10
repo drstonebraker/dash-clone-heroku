@@ -57,6 +57,8 @@ $( document ).ready(function() {
       $(this).data('open', true);
     }
 
+    $('#alert-glyph').toggleClass('alert-glyph--x');
+
     if ($(this).data('open')) {
       $('#alert-glyph').css('transform', 'translateX('+recenterLabel+'px)');
       $('#alert-text__close').css('left', recenterLabel+'px');
