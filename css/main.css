@@ -276,7 +276,7 @@
   -webkit-appearance: initial;
   padding: 0px;
   text-decoration: none;
-  transition: background-color 200ms;
+  transition: background-color 150ms;
 }
 
 .benefits:focus {
@@ -291,7 +291,7 @@
 .benefits-label__glyph {
   fill: #a7a7a7;
   display: inline;
-  transition: fill 200ms;
+  transition: fill 150ms;
 }
 
 .benefits-label__text {
@@ -300,7 +300,7 @@
   vertical-align: middle;
   margin: 0 0 0 4px;
   line-height: 9px;
-  transition: color 200ms;
+  transition: color 150ms;
 }
 
 .benefits:hover {
@@ -328,6 +328,47 @@
 .alert {
   height: 60px;
   background: #2f2f2f;
+  border: none;
+  -webkit-appearance: initial;
+  padding: 0px;
+  cursor: pointer;
+  color: white;
+  display: block;
+  width: 100%;
+  transition: background-color 150ms;
+}
+
+.alert:focus {
+  outline: none;
+}
+
+.alert:hover {
+  background: #d50000;
+}
+
+.alert__glyph {
+  position: relative;
+  left: 34px;
+  display: inline;
+  margin-right: 10px;
+}
+
+.alert-glyph {
+  display:inline-block;
+  margin-right: 10px;
+  width: 24px;
+  height: 21px;
+  background: blue;
+  vertical-align: middle;
+}
+
+.alert-text {
+  display: inline;
+  vertical-align: middle;
+}
+
+.alert-text__break {
+  display: none;
 }
 
 /*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
