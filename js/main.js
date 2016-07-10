@@ -45,8 +45,8 @@ $( document ).ready(function() {
     $('#alert-glyph__span--right').toggleClass('alert-glyph__span--right-x');
     $('#alert-glyph__span--bottom').toggleClass('alert-glyph__span--bottom-x');
     $('#alert-glyph__exclamation').toggleClass('alert-glyph__exclamation-x');
-    $('#alert-text__priority').toggleClass('alert-text__priority-x');
-    $('#alert-text__close').toggleClass('alert-text__close-x');
+    $('#alert-text__priority').toggleClass('alert-text__priority--x');
+    $('#alert-text__close').toggleClass('alert-text__close--x');
 
     //re-center the LABELS
     var recenterLabel = (Math.abs($('#alert-text__priority').width() - $('#alert-text__close').width()) / 2) - 4;

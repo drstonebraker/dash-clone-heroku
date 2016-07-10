@@ -463,11 +463,11 @@
   -webkit-transition: top 500ms;
 }
 
-.alert-text__priority-x {
+.alert-text__priority--x {
   top: 10px;
 }
 
-.alert-text__close-x {
+.alert-text__close--x {
   top: -10px;
 }
 
@@ -922,11 +922,11 @@ textarea {
     transform: translateY(10px) !important;
   }
 
-  .alert-text__priority-x {
+  .alert-text__priority--x {
     top: 20px;
   }
 
-  .alert-text__close-x {
+  .alert-text__close--x {
     top: -15px;
   }
 
