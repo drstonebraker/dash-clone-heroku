@@ -23,7 +23,7 @@
         <!--[if lt IE 8]>
 
         <![endif]-->
-        <div class="dashboard">
+        <section class="dashboard">
           <a class="dl-link" href="http://www.designledge.com/">
             <img class="dl-link__logo dl-link__logo--white" src="favicon-32x32-white.png" alt="Design Ledge logo">
             <img class="dl-link__logo dl-link__logo--color" src="favicon-32x32.png" alt="Design Ledge logo">
@@ -204,34 +204,41 @@
 
           --><button class="alert" id="alert">
 
-            <div class="alert-glyph">
-              <span class="alert-glyph__span alert-glyph__span--left" id="alert-glyph__span--left"></span>
-              <span class="alert-glyph__span alert-glyph__span--right" id="alert-glyph__span--right"></span>
-              <span class="alert-glyph__span alert-glyph__span--bottom" id="alert-glyph__span--bottom"></span>
-              <svg class="alert-glyph__exclamation" id="alert-glyph__exclamation" version="1.1" baseProfile="tiny"
-                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-                 x="0px" y="0px" width="24px" height="21px" viewBox="0 0 15.1 13.2" xml:space="preserve">
-                <defs>
-                </defs>
-                <g>
-                  <path d="M7.6,9.2c-0.4,0-0.6-0.3-0.6-0.7V4.8c0-0.4,0.3-0.6,0.6-0.6c0.4,0,0.7,0.3,0.7,0.6v3.7C8.2,8.9,7.9,9.2,7.6,9.2z"/>
-                </g>
-                <g>
-                  <circle cx="7.6" cy="10.7" r="0.8"/>
-                </g>
-              </svg>
+            <div class="alert-label" id="alert-label">
 
-            </div><!--end .alert-glyph
+              <div class="alert-glyph" id="alert-glyph">
+                <span class="alert-glyph__span alert-glyph__span--left" id="alert-glyph__span--left"></span>
+                <span class="alert-glyph__span alert-glyph__span--right" id="alert-glyph__span--right"></span>
+                <span class="alert-glyph__span alert-glyph__span--bottom" id="alert-glyph__span--bottom"></span>
+                <svg class="alert-glyph__exclamation" id="alert-glyph__exclamation" version="1.1" baseProfile="tiny"
+                   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+                   x="0px" y="0px" width="24px" height="21px" viewBox="0 0 15.1 13.2" xml:space="preserve">
+                  <defs>
+                  </defs>
+                  <g>
+                    <path d="M7.6,9.2c-0.4,0-0.6-0.3-0.6-0.7V4.8c0-0.4,0.3-0.6,0.6-0.6c0.4,0,0.7,0.3,0.7,0.6v3.7C8.2,8.9,7.9,9.2,7.6,9.2z"/>
+                  </g>
+                  <g>
+                    <circle cx="7.6" cy="10.7" r="0.8"/>
+                  </g>
+                </svg>
+
+              </div><!--end .alert-glyph
 
 
-            --><h3 class="alert-text">PRIORITY<br class="alert-text__break"> ALERT</h3>
+              --><h3 class="alert-text"><span class="alert-text__priority" id="alert-text__priority">PRIORITY<br class="alert-text__break"> ALERT</span><br><span class="alert-text__close" id="alert-text__close">CLOSE</span></h3>
+
+            </div>
 
           </button><!--end .alert-->
 
 
-        </div><!-- END DASHBOARD-->
+        </section><!-- END DASHBOARD-->
 
-        <img src="Capture.JPG" style="margin-left:9px">
+        section.
+
+
+
 
         <script   src="https://code.jquery.com/jquery-3.0.0.js"   integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="   crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script   src="https://code.jquery.com/jquery-3.0.0.js"   integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="   crossorigin="anonymous"><\/script>')</script>

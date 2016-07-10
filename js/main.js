@@ -5,11 +5,30 @@ var isIE = /*@cc_on!@*/false || !!document.documentMode;
 
 $( document ).ready(function() {
   $('#alert').click(function(){
+
     $(this).toggleClass('alert--x');
     $('#alert-glyph__span--left').toggleClass('alert-glyph__span--left-x');
     $('#alert-glyph__span--right').toggleClass('alert-glyph__span--right-x');
     $('#alert-glyph__span--bottom').toggleClass('alert-glyph__span--bottom-x');
-    $('#alert-glyph__exclamation').toggleClass('alert-glyph__exclamation-x');    
+    $('#alert-glyph__exclamation').toggleClass('alert-glyph__exclamation-x');
+    $('#alert-text__priority').toggleClass('alert-text__priority-x');
+    $('#alert-text__close').toggleClass('alert-text__close-x');
+
+    //re-center the LABELS
+    var recenterLabel = (Math.abs($('#alert-text__priority').width() - $('#alert-text__close').width()) / 2) - 4;
+
+    if ($(this).data('open')) {
+      $(this).data('open', false);
+    } else {
+      $(this).data('open', true);
+    }
+
+    if ($(this).data('open')) {
+      $('#alert-glyph').css('transform', 'translateX('+recenterLabel+'px)');
+      $('#alert-text__close').css('left', recenterLabel+'px');
+    } else {
+      $('#alert-glyph').css('transform', 'translateX(0px)');
+    }
   })
 
 
@@ -58,8 +77,6 @@ window.onload = function onLoad() {
     var doubleDigitMins;
 
     //set AM or PM and convert .getHours to 12-hour time.
-
-    console.log(date.getHours());
     if (date.getHours() > 11){
       amOrPm = 'PM';
       twelveHour = (date.getHours() > 12) ? date.getHours() - 12 : date.getHours();
