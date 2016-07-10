@@ -4,7 +4,13 @@ var isIE = /*@cc_on!@*/false || !!document.documentMode;
 
 
 $( document ).ready(function() {
-
+  $('#alert').click(function(){
+    $(this).toggleClass('alert--x');
+    $('#alert-glyph__span--left').toggleClass('alert-glyph__span--left-x');
+    $('#alert-glyph__span--right').toggleClass('alert-glyph__span--right-x');
+    $('#alert-glyph__span--bottom').toggleClass('alert-glyph__span--bottom-x');
+    $('#alert-glyph__exclamation').toggleClass('alert-glyph__exclamation-x');    
+  })
 
 
 });

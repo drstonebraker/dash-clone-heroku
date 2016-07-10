@@ -346,20 +346,79 @@
   background: #d50000;
 }
 
-.alert__glyph {
-  position: relative;
-  left: 34px;
-  display: inline;
-  margin-right: 10px;
-}
-
 .alert-glyph {
   display:inline-block;
+  position: relative;
   margin-right: 10px;
   width: 24px;
   height: 21px;
-  background: blue;
   vertical-align: middle;
+}
+
+.alert-glyph__span {
+  position: absolute;
+  display: block;
+  background: white;
+  height: 2px;
+  width: 24px;
+  border-radius: 1px;
+  bottom: 0px;
+}
+
+.alert-glyph__span--left {
+  transform-origin: 1px 1px;
+  transform: rotate(-60deg);
+  -webkit-transform: rotate(-60deg);
+  transition: transform 500ms;
+  -webkit-transition: transform 500ms;
+}
+
+.alert-glyph__span--right {
+  transform-origin: 23px 1px;
+  transform: rotate(60deg);
+  -webkit-transform: rotate(60deg);
+  transition: transform 500ms;
+  -webkit-transition: transform 500ms;
+}
+
+.alert-glyph__span--bottom {
+  transform-origin: 50% -12px;
+  transition: transform 500ms, color 500ms;
+  -webkit-transition: transform 500ms, color 500ms;
+}
+
+.alert-glyph__exclamation {
+  position:absolute;
+  left: 0px;
+  fill: white;
+  transition: transform 500ms, fill 500ms;
+  -webkit-transition: transform 500ms, fill 500ms;
+}
+
+.alert-glyph__span--left-x {
+  transform: rotate(45deg) translate(-10px, -15px);
+  -webkit-transform: rotate(45deg) translate(-10px, -15px);
+}
+
+.alert-glyph__span--right-x {
+  transform: rotate(-45deg) translate(10px,-15px);
+  -webkit-transform: rotate(-45deg) translate(10px,-15px);
+}
+
+.alert-glyph__span--bottom-x {
+  transform: scale(0.1);
+  -webkit-transform: scale(0.1);
+  color: transparent;
+}
+
+.alert-glyph__exclamation-x {
+  transform: scale(0.1);
+  -webkit-transform: scale(0.1);
+  fill: transparent;
+}
+
+.alert--x {
+  background: #d50000;
 }
 
 .alert-text {
