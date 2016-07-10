@@ -816,6 +816,19 @@ textarea {
        right:0px;
      }
 
+     .backup {
+       width: 33.3%;
+     }
+
+     .benefits {
+       width: calc(33.3% - 1px);
+     }
+
+     .alert {
+       display: inline-block;
+       width: 33.3%;
+     }
+
 
 
    }
