@@ -1,7 +1,40 @@
+var today = new Date();
+var currentMonth = today.getMonth();
+
+/* ==========================================================================
+   USE THESE VARS TO CONFIGURE DASHBOARD FOR INDIVIDUAL CLIENT
+   ========================================================================== */
+var animationDuration = 1500;
+var animationEasing = "easeOut";
+
+var clientData = {
+  startingMonth: 3, //jan=0, feb=1...
+  monthlyHours: 6,
+  monthlyBal: { //this can be changed to an array but is an object to easier viewing/editing
+    0: 0,
+    1: 0,
+    2: 0,
+    3: 4,
+    4: 0,
+    5: 2,
+    6: 6,
+    7: 5,
+    8: 0,
+    9: 0,
+    10: 0,
+    11: 0
+  },
+  annualHours: 36,
+  annualBal: 17,
+  lastBackup: new Date('2016-12-14T07:32:00'),
+  monthlyBenefits: '',
+};
+//$('#benefits-modal__text').html(clientData.monthlyBenefits); //uncomment this and add client's description of monthly benefits
+
+//end of configurable vars
+
 //detect IE
 var isIE = /*@cc_on!@*/false || !!document.documentMode;
-
-
 
 $( document ).ready(function() {
   $('#alert').click(function(){
@@ -35,40 +68,13 @@ $( document ).ready(function() {
 });
 
 
+
+
+
 window.onload = function onLoad() {
 
-  /* ==========================================================================
-     USE THESE VARS TO CONFIGURE DASHBOARD FOR INDIVIDUAL CLIENT
-     ========================================================================== */
-
-  var startingMonth = 3; //jan=0, feb=1...
-  var monthlyHours = 6;
-  var monthlyBal = { //this can be changed to an array but is an object to easier viewing/editing
-    0: 0,
-    1: 0,
-    2: 0,
-    3: 4,
-    4: 0,
-    5: 2,
-    6: 6,
-    7: 5,
-    8: 0,
-    9: 0,
-    10: 0,
-    11: 0
-  };
-  var annualHours=36;
-  var annualBal=17;
-  var today = new Date();
-  var lastBackup = new Date('2016-12-14T07:32:00');
-  var currentMonth = today.getMonth();
-  var animationDuration = 1500;
-  var animationEasing = "easeOut";
-  //$('#benefits-modal__text').html(''); //uncomment this and add client's description of monthly benefits
-  //end of configurable variables
-
   //highlight current month
-  $('#month--' + (currentMonth - startingMonth)).addClass('month--current');
+  $('#month--' + (currentMonth - clientData.startingMonth)).addClass('month--current');
 
   //fill last backup date & time
   function getlastBackupString(date) {
@@ -107,7 +113,7 @@ window.onload = function onLoad() {
     return lastBackupString;
   }
 
-  $('#backup__datetime').html(getlastBackupString(lastBackup));
+  $('#backup__datetime').html(getlastBackupString(clientData.lastBackup));
 
   //set stroke width to 6 if browser is IE (to workaround bug)
   if (isIE) {
@@ -128,7 +134,7 @@ window.onload = function onLoad() {
 
   function updateMonths (i, val) {
     //set monthlyBalIteration to appropriate month based on client's starting month
-    var monthlyBalIteration = (startingMonth + i) < 12 ? startingMonth + i : startingMonth + i - 12;
+    var monthlyBalIteration = (clientData.startingMonth + i) < 12 ? clientData.startingMonth + i : clientData.startingMonth + i - 12;
 
     //set month names based on client starting month
     function getMonthName () {
@@ -168,8 +174,8 @@ window.onload = function onLoad() {
         },
         step: function(state, circle) {
 
-          var value = Math.round(circle.value() * monthlyHours);
-          if (value === 0 && monthlyBalIteration <= currentMonth && monthlyBalIteration >= startingMonth) { //if hours used is 0 and month has already occured in current billing year.
+          var value = Math.round(circle.value() * clientData.monthlyHours);
+          if (value === 0 && monthlyBalIteration <= currentMonth && monthlyBalIteration >= clientData.startingMonth) { //if hours used is 0 and month has already occured in current billing year.
             circle.setText('0');
           } else if (value === 0) {
             circle.setText('-');
@@ -181,7 +187,7 @@ window.onload = function onLoad() {
     });//end of ProgressBar.Circle constructor
 
     //Animate circular progress bars
-    circle.animate(monthlyBal[monthlyBalIteration]/monthlyHours);
+    circle.animate(clientData.monthlyBal[monthlyBalIteration]/clientData.monthlyHours);
 
   }
 
@@ -193,7 +199,7 @@ window.onload = function onLoad() {
      -animate progress bar with used hours
      ========================================================================== */
 
-  $('#annual-progress__tot-hours').html(annualHours);
+  $('#annual-progress__tot-hours').html(clientData.annualHours);
 
   //create linear progress bar
   var line = new ProgressBar.Line('#annual-progress', {
@@ -211,7 +217,7 @@ window.onload = function onLoad() {
       },
       step: function(state, line, attachment) {
 
-        var value = Math.round(line.value() * annualHours);
+        var value = Math.round(line.value() * clientData.annualHours);
         if (value === 0) {
           line.setText('0');
         } else {
@@ -233,6 +239,11 @@ window.onload = function onLoad() {
     $('#annual-progress__tot-hours').css('margin-top', '-10px');
   }
 
-  line.animate(annualBal/annualHours, {attachment: $('.annual-progress__used-hours')});
+  line.animate(clientData.annualBal/clientData.annualHours, {attachment: $('.annual-progress__used-hours')});
 
 };
+
+//keep .annual-progress__used-hours in correct position on resize
+$(window).resize(function(){
+    $('.annual-progress__used-hours').css({'transform': "translateX("+(clientData.annualBal/clientData.annualHours)*$('#annual-progress').width()+"px)"});
+});
