@@ -78,6 +78,7 @@
    ========================================================================== */
  .all-months {
    text-align: center;
+   position:relative;
  }
 
 .all-months__spacer {
@@ -154,6 +155,9 @@
 /* ==========================================================================
    ANNUAL PROGRESS BAR
    ========================================================================== */
+.annual-section {
+  margin-bottom: 25px;
+}
 
 .annual-progress {
   position: relative;
@@ -161,7 +165,7 @@
   width: 80%;
   min-width: 210px;
   background: #dfdfdf;
-  margin: 0 auto 25px auto;
+  margin: 0 auto;
   font-size: 1.5em;
 }
 
@@ -748,3 +752,70 @@ textarea {
         page-break-after: avoid;
     }
 }
+
+
+/* ==========================================================================
+   TABLET
+   ========================================================================== */
+
+
+   @media only screen and (min-width : 768px) {
+     .dl-link {
+       margin-bottom: 0px;
+     }
+
+     .progress-label {
+       display: inline-block;
+       margin: 0 8px 0 calc(4% - 8px);
+       text-align: left;
+       vertical-align: middle;
+       min-width: 77px;
+       width:10%
+     }
+
+     .progress-label__text {
+       text-align: left;
+     }
+
+     .month-section {
+
+     }
+
+     .all-months {
+      display: inline-block;
+      vertical-align: middle;
+      min-width: 625px;
+      width: 83%;
+     }
+
+     .all-months__spacer {
+       width: 8%;
+       min-width: 50px;
+     }
+
+
+     @media only screen
+       and (max-width: 850px) {
+       .month--current {
+         width: 50px;
+         border-radius: 0 0 25px 25px;
+         margin-left: -25px;
+       }
+     }
+
+     .annual-section {
+      margin-bottom: 16px;
+     }
+
+     .annual-progress {
+       width: calc(83% - 48px);
+       min-width: 577px;
+       display:inline-block;
+       vertical-align: middle;
+       margin-left: 24px;
+       right:0px;
+     }
+
+
+
+   }
