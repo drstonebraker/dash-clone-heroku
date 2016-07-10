@@ -276,6 +276,7 @@
   -webkit-appearance: initial;
   padding: 0px;
   text-decoration: none;
+  transition: background-color 200ms;
 }
 
 .benefits:focus {
@@ -290,6 +291,7 @@
 .benefits-label__glyph {
   fill: #a7a7a7;
   display: inline;
+  transition: fill 200ms;
 }
 
 .benefits-label__text {
@@ -298,6 +300,7 @@
   vertical-align: middle;
   margin: 0 0 0 4px;
   line-height: 9px;
+  transition: color 200ms;
 }
 
 .benefits:hover {
