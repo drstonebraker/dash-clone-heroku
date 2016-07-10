@@ -242,7 +242,129 @@
 
         </main><!-- END DASHBOARD-->
 
-        section.
+        <form action="" class="alert-form" id="alert-form">
+          <fieldset class="bug-info">
+
+            <label class="bug-info__label" for="whats-happening">What's happening is</label>
+            <textarea name="whats-happening" id="whats-happening" class="bug-info__textarea--whats-happening" required></textarea>
+
+            <label class="bug-info__label" for="whats-expected">What's expected to happen is</label>
+            <textarea name="whats-expected" id="whats-expected" class="bug-info__textarea--whats-expected" required></textarea>
+
+            <fieldset class="bug-info__frequency">
+              <legend class="bug-info__label bug-info__label--this-happens">This happens</legend>
+              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="every-time" required>
+              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="often" required>
+              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="occasionally" required>
+              <input type="radio" name="this-happens" class="bug-info__radio u--hidden" id="only-once" required>
+              <button class="bug-info__button bug-info__button--every-time">
+                <label class="bug-info__button-label" for="every-time">EVERY TIME</label>
+              </button>
+              <button class="bug-info__button bug-info__button--often">
+                <label class="bug-info__button-label" for="often">OFTEN</label>
+              </button>
+              <button class="bug-info__button bug-info__button--occasionally">
+                <label class="bug-info__button-label" for="occasionally">OCCASIONALLY</label>
+              </button>
+              <button class="bug-info__button bug-info__button--only-once">
+                <label class="bug-info__button-label" for="only-once">ONLY ONCE</label>
+              </button>
+            </fieldset>
+
+            <fieldset class="bug-info__environment">
+              <legend class="bug-info__label bug-info__label--when-using">When using</legend>
+
+              <select name="device" class="bug-info__button select select--device" id="" required>
+                <option class="select__option" value="pc">MICROSOFT PC</option>
+                <option class="select__option" value="mac">APPLE MAC</option>
+                <option class="select__option" value="android-phone">ANDROID PHONE</option>
+                <option class="select__option" value="android-tablet">ANDROID TABLET</option>                  <option class="select__option" value="iphone">APPLE IPHONE</option>
+                <option class="select__option" value="ipad">APPLE IPAD</option>
+                <option class="select__option" value="win-phone">WINDOWS PHONE</option>
+                <option class="select__option" value="other">OTHER (Please Specify)</option>
+              </select>
+
+              <select name="op-sys" class="bug-info__button select select--op-sys" id="" disabled="true" required>
+
+                <option class="select__option" value="win-10">WINDOWS 10</option>
+                <option class="select__option" value="win-8">WINDOWS 8</option>
+                <option class="select__option" value="win-7">WINDOWS 7</option>
+                <option class="select__option" value="win-vista">WINDOWS VISTA</option>
+                <option class="select__option" value="win-xp">WINDOWS XP</option>
+                <option class="select__option" value="win-older">OLDER (Please Specify)</option>
+
+                <option class="select__option" value="osx-12">OSX SIERRA</option>
+                <option class="select__option" value="osx-11">OSX EL CAPITAN</option>
+                <option class="select__option" value="osx-10">OSX YOSEMITE</option>
+                <option class="select__option" value="osx-9">OSX MAVERICKS</option>
+                <option class="select__option" value="osx-8">OSX MOUNTAIN LION</option>
+                <option class="select__option" value="osx-older">OLDER (Please Specify)</option>
+
+                <option class="select__option" value="android-6">MARSHMALLOW</option>
+                <option class="select__option" value="android-5">LOLLIPOP</option>
+                <option class="select__option" value="android-4-4">KITKAT</option>
+                <option class="select__option" value="android-4-3">JELLY BEAN</option>
+                <option class="select__option" value="android-older">OLDER (Please Specify)</option>
+
+                <option class="select__option" value="ios-10">IOS 10</option>
+                <option class="select__option" value="ios-9">IOS 9</option>
+                <option class="select__option" value="ios-8">IOS 8</option>
+                <option class="select__option" value="ios-7">IOS 7</option>
+                <option class="select__option" value="ios-6">IOS 6</option>
+                <option class="select__option" value="ios-older">OLDER (Please Specify)</option>
+
+                <option class="select__option" value="win-mob-10">WINDOWS 10 MOBILE</option>
+                <option class="select__option" value="win-mob-8">WINDOWS PHONE 8</option>
+                <option class="select__option" value="win-mob-7">WINDOWS PHONE 7.10</option>
+                <option class="select__option" value="win-mob-rt">WINDOWS RT</option>
+                <option class="select__option" value="win-mob-older">OLDER (Please Specify)</option>
+              </select>
+
+              <select name="browser" class="bug-info__button select select--browser" id="" disabled="true" required>
+                <option class="select__option" value="chrome">CHROME</option>
+                <option class="select__option" value="firefox">FIREFOX</option>
+                <option class="select__option" value="safari">SAFARI</option>
+                <option class="select__option" value="edge">MICROSOFT EDGE</option>                  <option class="select__option" value="ie-11">INTERNET EXPLORER 9-11</option>
+                <option class="select__option" value="ie-8">INTERNET EXPLORER-OLDER</option>
+                <option class="select__option" value="opera">OPERA</option>
+                <option class="select__option" value="browser-other">OTHER (Please Specify)</option>
+              </select>
+
+              <button class="bug-info__button bug-info__button--detect">DETECT FOR ME</button>
+
+            </fieldset>
+
+          </fieldset><!--end .bug-info-->
+
+
+
+
+          <fieldset class="personal-info">
+
+            <fieldset class="contact">
+
+              <legend class="personal-info__label">Who needs to be contacted when this request is addressed?</legend>
+
+              <label for="name" class="contact__label">NAME</label>
+              <input type="text" class="contact__input" id="name" required>
+
+              <label for="email" class="contact__label">EMAIL</label>
+              <input type="email" class="contact__input" id="email" required>
+
+              <label for="phone" class="contact__label">PHONE</label>
+              <input type="tel" class="contact__input" id="phone" required>
+
+            </fieldset>
+
+            <label for="anything-else" class="personal-info__label">Is there anything else?</label>
+            <textarea name="anything-else" id="anything-else" cols="30" rows="10" class="textarea" required></textarea>
+
+            <button type="submit" form="alert-form" class="form__submit"></button>
+
+          </fieldset><!--end .personal-info-->
+
+        </form>
+
 
 
 
