@@ -1176,6 +1176,25 @@ background: #404040
     font-size: .8em;
   }
 
+  .contact {
+    display:inline-block;
+    width: 47%;
+    margin: 0 3% 0 0px;
+    vertical-align: top;
+  }
+
+  .final-input {
+    display:inline-block;
+    width: 47%;
+    margin: 0 0px 0 3%;
+    vertical-align: top;
+  }
+
+  .input--anything-else {
+    margin-top: 49px;
+    height: 152px;
+  }
+
 }
 
 /* ==========================================================================

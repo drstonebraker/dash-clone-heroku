@@ -369,7 +369,7 @@
 
             <fieldset class="contact">
 
-              <legend class="personal-info__label">Who needs to be contacted when this request is addressed?</legend>
+              <legend class="personal-info__label">Who needs to be contacted<br> when this request is addressed?</legend>
 
               <label for="input--name" class="contact__label">NAME</label
               ><input autocomplete="name" type="text" class="contact__input" id="input--name" required>
@@ -380,12 +380,15 @@
               <label for="input--phone" class="contact__label">PHONE</label
               ><input type="tel" autocomplete="tel" class="contact__input contact__input--phone" id="input--phone" required>
 
-            </fieldset>
+            </fieldset><!--
 
-            <label for="input--anything-else" class="personal-info__label">Is there anything else?</label>
-            <textarea name="anything-else" id="input--anything-else" class="input--anything-else" required></textarea>
+            --><div class="final-input">
+              <label for="input--anything-else" class="personal-info__label">Is there anything else?</label>
+              <textarea name="anything-else" id="input--anything-else" class="input--anything-else" required></textarea>
+            </div>
 
-            <button type="submit" form="alert-form" class="form__submit" id="form__submit">SUBMIT</button>
+              <button type="submit" form="alert-form" class="form__submit" id="form__submit">SUBMIT</button>
+
 
           </fieldset><!--end .personal-info-->
 
