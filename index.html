@@ -284,74 +284,79 @@
             <fieldset class="bug-info__environment">
               <legend class="bug-info__label bug-info__label--when-using">When using</legend>
 
-              <input type="hidden" id="input--device" value="" required><!--
-              --><button type="button" class="bug-info__button select select--device" id="select--device" formnovalidate>DEVICE</button><!--
-              --><ul class="select-list select-list--device"><!--
-              --><li class="select-list__option" data-value="pc">MICROSOFT PC</li><!--
-              --><li class="select-list__option" data-value="mac">APPLE MAC</li><!--
-              --><li class="select-list__option" data-value="android-phone">ANDROID PHONE</li><!--
-              --><li class="select-list__option" data-value="android-tablet">ANDROID TABLET</li><!--
-              --><li class="select-list__option" data-value="iphone">APPLE IPHONE</li><!--
-              --><li class="select-list__option" data-value="ipad">APPLE IPAD</li><!--
-                --><li class="select-list__option" data-value="win-phone">WINDOWS PHONE</li><!--
-                --><li class="select-list__option" data-value="win-surface">MICROSOFT SURFACE</li><!--
-                --><li class="select-list__option" data-value="other">OTHER (Please Specify)</li><!--
+              <div class="select-group select-group--device">
+                <input type="hidden" id="input--device" value="" required><!--
+                --><button type="button" class="bug-info__button select select--device" id="select--device" formnovalidate>DEVICE</button><!--
+                --><ul class="select-list select-list--device"><!--
+                --><li class="select-list__option" data-value="pc">MICROSOFT PC</li><!--
+                --><li class="select-list__option" data-value="mac">APPLE MAC</li><!--
+                --><li class="select-list__option" data-value="android-phone">ANDROID PHONE</li><!--
+                --><li class="select-list__option" data-value="android-tablet">ANDROID TABLET</li><!--
+                --><li class="select-list__option" data-value="iphone">APPLE IPHONE</li><!--
+                --><li class="select-list__option" data-value="ipad">APPLE IPAD</li><!--
+                  --><li class="select-list__option" data-value="win-phone">WINDOWS PHONE</li><!--
+                  --><li class="select-list__option" data-value="win-surface">MICROSOFT SURFACE</li><!--
+                  --><li class="select-list__option" data-value="other">OTHER (Please Specify)</li><!--
                 --></ul><!--
+              --></div><!--
 
-              --><input type="hidden" id="input--op-sys" value="" required><!--
-              --><button type="button" class="bug-info__button select select--op-sys" id="select--op-sys" formnovalidate>OPERATING SYSTEM</button><!--
-              --><ul class="select-list select-list--op-sys"><!--
-              --><li class="select-list__option" data-device="pc win-surface" data-value="win-10">WINDOWS 10</li><!--
-                --><li class="select-list__option" data-device="pc win-surface" data-value="win-8">WINDOWS 8</li><!--
-                --><li class="select-list__option" data-device="pc" data-value="win-7">WINDOWS 7</li><!--
-                --><li class="select-list__option" data-device="pc" data-value="win-vista">WINDOWS VISTA</li><!--
-                --><li class="select-list__option" data-device="pc" data-value="win-xp">WINDOWS XP</li><!--
-                --><li class="select-list__option" data-device="pc" data-value="win-older">OLDER (Please Specify)</li><!--
+              --><div class="select-group select-group--op-sys"><!--
+                --><input type="hidden" id="input--op-sys" value="" required><!--
+                --><button type="button" class="bug-info__button select select--op-sys u_disabled" id="select--op-sys" formnovalidate>OPERATING SYSTEM</button><!--
+                --><ul class="select-list select-list--op-sys"><!--
+                --><li class="select-list__option" data-device="pc win-surface" data-value="win-10">WINDOWS 10</li><!--
+                  --><li class="select-list__option" data-device="pc win-surface" data-value="win-8">WINDOWS 8</li><!--
+                  --><li class="select-list__option" data-device="pc" data-value="win-7">WINDOWS 7</li><!--
+                  --><li class="select-list__option" data-device="pc" data-value="win-vista">WINDOWS VISTA</li><!--
+                  --><li class="select-list__option" data-device="pc" data-value="win-xp">WINDOWS XP</li><!--
+                  --><li class="select-list__option" data-device="pc" data-value="win-older">OLDER (Please Specify)</li><!--
 
-                --><li class="select-list__option" data-device="mac" data-value="osx-12">OSX SIERRA</li><!--
-                --><li class="select-list__option" data-device="mac" data-value="osx-11">OSX EL CAPITAN</li><!--
-                --><li class="select-list__option" data-device="mac" data-value="osx-10">OSX YOSEMITE</li><!--
-                --><li class="select-list__option" data-device="mac" data-value="osx-9">OSX MAVERICKS</li><!--
-                --><li class="select-list__option" data-device="mac" data-value="osx-8">OSX MOUNTAIN LION</li><!--
-                --><li class="select-list__option" data-device="mac" data-value="osx-older">OLDER (Please Specify)</li><!--
+                  --><li class="select-list__option" data-device="mac" data-value="osx-12">OSX SIERRA</li><!--
+                  --><li class="select-list__option" data-device="mac" data-value="osx-11">OSX EL CAPITAN</li><!--
+                  --><li class="select-list__option" data-device="mac" data-value="osx-10">OSX YOSEMITE</li><!--
+                  --><li class="select-list__option" data-device="mac" data-value="osx-9">OSX MAVERICKS</li><!--
+                  --><li class="select-list__option" data-device="mac" data-value="osx-8">OSX MOUNTAIN LION</li><!--
+                  --><li class="select-list__option" data-device="mac" data-value="osx-older">OLDER (Please Specify)</li><!--
 
-                --><li class="select-list__option" data-device="android-phone android-tablet" data-value="android-6">MARSHMALLOW</li><!--
-                --><li class="select-list__option" data-device="android-phone android-tablet" data-value="android-5">LOLLIPOP</li><!--
-                --><li class="select-list__option" data-device="android-phone android-tablet" data-value="android-4-4">KITKAT</li><!--
-                --><li class="select-list__option" data-device="android-phone android-tablet" data-value="android-4-3">JELLY BEAN</li><!--
-                --><li class="select-list__option" data-device="android-phone android-tablet" data-value="android-older">OLDER (Please Specify)</li><!--
+                  --><li class="select-list__option" data-device="android-phone android-tablet" data-value="android-6">MARSHMALLOW</li><!--
+                  --><li class="select-list__option" data-device="android-phone android-tablet" data-value="android-5">LOLLIPOP</li><!--
+                  --><li class="select-list__option" data-device="android-phone android-tablet" data-value="android-4-4">KITKAT</li><!--
+                  --><li class="select-list__option" data-device="android-phone android-tablet" data-value="android-4-3">JELLY BEAN</li><!--
+                  --><li class="select-list__option" data-device="android-phone android-tablet" data-value="android-older">OLDER (Please Specify)</li><!--
 
-                --><li class="select-list__option" data-device="iphone ipad" data-value="ios-10">IOS 10</li><!--
-                --><li class="select-list__option" data-device="iphone ipad" data-value="ios-9">IOS 9</li><!--
-                --><li class="select-list__option" data-device="iphone ipad" data-value="ios-8">IOS 8</li><!--
-                --><li class="select-list__option" data-device="iphone ipad" data-value="ios-7">IOS 7</li><!--
-                --><li class="select-list__option" data-device="iphone ipad" data-value="ios-6">IOS 6</li><!--
-                --><li class="select-list__option" data-device="iphone ipad" data-value="ios-older">OLDER (Please Specify)</li><!--
+                  --><li class="select-list__option" data-device="iphone ipad" data-value="ios-10">IOS 10</li><!--
+                  --><li class="select-list__option" data-device="iphone ipad" data-value="ios-9">IOS 9</li><!--
+                  --><li class="select-list__option" data-device="iphone ipad" data-value="ios-8">IOS 8</li><!--
+                  --><li class="select-list__option" data-device="iphone ipad" data-value="ios-7">IOS 7</li><!--
+                  --><li class="select-list__option" data-device="iphone ipad" data-value="ios-6">IOS 6</li><!--
+                  --><li class="select-list__option" data-device="iphone ipad" data-value="ios-older">OLDER (Please Specify)</li><!--
 
-                --><li class="select-list__option" data-device="win-phone" data-value="win-mob-10">WINDOWS 10 MOBILE</li><!--
-                --><li class="select-list__option" data-device="win-phone" data-value="win-mob-8">WINDOWS PHONE 8</li><!--
-                --><li class="select-list__option" data-device="win-phone" data-value="win-mob-7">WINDOWS PHONE 7.10</li><!--
-                --><li class="select-list__option" data-device="win-surface" data-value="win-mob-rt">WINDOWS RT</li><!--
-                --><li class="select-list__option" data-device="win-phone" data-value="win-mob-older">OLDER (Please Specify)</li><!--
+                  --><li class="select-list__option" data-device="win-phone" data-value="win-mob-10">WINDOWS 10 MOBILE</li><!--
+                  --><li class="select-list__option" data-device="win-phone" data-value="win-mob-8">WINDOWS PHONE 8</li><!--
+                  --><li class="select-list__option" data-device="win-phone" data-value="win-mob-7">WINDOWS PHONE 7.10</li><!--
+                  --><li class="select-list__option" data-device="win-surface" data-value="win-mob-rt">WINDOWS RT</li><!--
+                  --><li class="select-list__option" data-device="win-phone" data-value="win-mob-older">OLDER (Please Specify)</li><!--
 
-                --><li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="op-sys-other">OTHER (Please Specify)</li><!--
-
+                  --><li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="op-sys-other">OTHER (Please Specify)</li><!--
                 --></ul><!--
+              --></div><!--
 
-              --><input type="hidden" id="input--browser" value="" required><!--
-              --><button type="button" class="bug-info__button select select--browser" id="select--browser" formnovalidate>BROWSER</button><!--
-              --><ul class="select-list select-list--op-sys"><!--
-                --><li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="chrome">CHROME</li><!--
-                --><li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="firefox">FIREFOX</li><!--
-                --><li class="select-list__option" data-device="mac iphone ipad" data-value="safari">SAFARI</li><!--
-                --><li class="select-list__option" data-device="pc win-phone win-surface" data-value="edge">MICROSOFT EDGE</li><!--
-                --><li class="select-list__option" data-device="pc win-phone win-surface" data-value="ie-11">INTERNET EXPLORER 9-11</li><!--
-                --><li class="select-list__option" data-device="pc win-phone win-surface" data-value="ie-8">INTERNET EXPLORER-OLDER</li><!--
-                --><li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="opera">OPERA</li><!--
-                --><li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="browser-other">OTHER (Please Specify)</li><!--
-              --></ul><!--
+              --><div class="select-group select-group--browser"><!--
+                --><input type="hidden" id="input--browser" value="" required><!--
+                --><button type="button" class="bug-info__button select select--browser u_disabled" id="select--browser" formnovalidate>BROWSER</button><!--
+                --><ul class="select-list select-list--op-sys"><!--
+                  --><li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="chrome">CHROME</li><!--
+                  --><li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="firefox">FIREFOX</li><!--
+                  --><li class="select-list__option" data-device="mac iphone ipad" data-value="safari">SAFARI</li><!--
+                  --><li class="select-list__option" data-device="pc win-phone win-surface" data-value="edge">MICROSOFT EDGE</li><!--
+                  --><li class="select-list__option" data-device="pc win-phone win-surface" data-value="ie-11">IE 9, 10, 11</li><!--
+                  --><li class="select-list__option" data-device="pc win-phone win-surface" data-value="ie-8">IE-OLDER</li><!--
+                  --><li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="opera">OPERA</li><!--
+                  --><li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="browser-other">OTHER (Please Specify)</li><!--
+                --></ul><!--
+              --></div><!--
 
-              --><button type="button" class="bug-info__button bug-info__button--detect"  formnovalidate>DETECT FOR ME</button>
+              --><button type="button" class="select-group select-group--detect bug-info__button bug-info__button--detect"  formnovalidate>DETECT FOR ME</button>
 
             </fieldset>
 
