@@ -804,16 +804,23 @@ background: #d50000;
   font-size: 1em;
 }
 
+.bug-info {
+  padding-bottom: 20px;
+  border-bottom: solid 3px #dfdfdf;
+  width: 86%;
+  margin: 0 auto;
+}
+
 .bug-info__label {
   display:block;
-  width: 86%;
+  width:100%;
   margin: 0px auto 13px auto;
   padding-top: 45px;
 }
 
 .bug-info__textarea {
   display:block;
-  width: 86%;
+  width:100%;
   margin: 0 auto 5px auto;
   border: none;
   resize: none;
@@ -823,7 +830,7 @@ background: #d50000;
 .bug-info__button {
   display:block;
   height: 50px;
-  width: 86%;
+  width: 100%;
   margin: 20px auto 0 auto;
   background: #dfdfdf;
   font-size: .8em;
@@ -864,6 +871,11 @@ color:white;
   color:white;
 }
 
+.bug-info__button--selected {
+  background: #9bd500;
+  color:white;
+}
+
 .select {
 
 }
@@ -871,7 +883,7 @@ color:white;
 .select-list {
   //display:none;
   list-style-type: none;
-  width: 86%;
+  width: 100%;
   margin:0 auto;
   padding:0px;
 }
@@ -909,6 +921,69 @@ color:white;
 }
 
 .bug-info__button--detect:active {
+box-shadow: inset 0 0 0 1px #161616 ,inset 0 2px 10px #161616;
+
+}
+
+.personal-info {
+  padding: 20px 0 37px 0;
+  width: 86%;
+  margin: 0 auto;
+}
+
+.personal-info__label {
+  display:block;
+  width:100%;
+  margin: 0px auto 16px auto;
+  padding-top: 45px;
+}
+
+.contact {
+  margin-bottom: 8px;
+}
+
+.contact__label {
+  display:inline-block;
+  font-size: .8em;
+  width: 70px;
+  vertical-align: middle;
+}
+
+.contact__input {
+  padding: 0 10px;
+  display: inline-block;
+  width: calc(100% - 70px);
+  border: none;
+  font-size: 1.5em;
+  height: 40px;
+  box-sizing: border-box;
+  margin-top: 16px;
+  vertical-align: sub;
+}
+
+.input--anything-else {
+  display:block;
+  width:100%;
+  margin: 0 auto 37px auto;
+  border: none;
+  resize: none;
+  height: 100px;
+  box-sizing: border-box;
+}
+
+.form__submit {
+  display:block;
+  height: 50px;
+  width: 150px;
+  margin: 20px 0 0 auto;
+  background: #2f2f2f;
+  font-size: .8em;
+  border: none;
+  padding: 0px;
+  color: white;
+}
+
+.form__submit:active {
 box-shadow: inset 0 0 0 1px #161616 ,inset 0 2px 10px #161616;
 
 }

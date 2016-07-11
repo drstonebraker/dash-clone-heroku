@@ -242,37 +242,37 @@
 
         </main><!-- END DASHBOARD-->
 
-        <form action="" class="alert-form" id="alert-form">
+        <form action="" class="alert-form" id="input--alert-form">
           <fieldset class="bug-info">
 
-            <label class="bug-info__label" for="whats-happening">What's happening is</label>
-            <textarea name="whats-happening" id="whats-happening" class="bug-info__textarea bug-info__textarea--whats-happening" required></textarea>
+            <label class="bug-info__label" for="input--whats-happening">What's happening is</label>
+            <textarea name="whats-happening" id="input--whats-happening" class="bug-info__textarea bug-info__textarea--whats-happening" required></textarea>
 
-            <label class="bug-info__label" for="whats-expected">What's expected to happen is</label>
-            <textarea name="whats-expected" id="whats-expected" class="bug-info__textarea bug-info__textarea--whats-expected" required></textarea>
+            <label class="bug-info__label" for="input--whats-expected">What's expected to happen is</label>
+            <textarea name="whats-expected" id="input--whats-expected" class="bug-info__textarea bug-info__textarea--whats-expected" required></textarea>
 
             <fieldset class="bug-info__frequency">
 
               <legend class="bug-info__label bug-info__label--this-happens">This happens</legend>
 
-              <input type="radio" name="this-happens" class="bug-info__radio u_hidden" id="every-time" required>
+              <input type="radio" name="this-happens" class="bug-info__radio u_hidden" id="input--every-time" required>
               <button  type="button" class="bug-info__button bug-info__button--every-time" formnovalidate>
-                <label class="bug-info__button-label" for="every-time">EVERY TIME</label>
+                <label class="bug-info__button-label" for="input--every-time">EVERY TIME</label>
               </button>
 
-              <input type="radio" name="this-happens" class="bug-info__radio u_hidden" id="often" required>
+              <input type="radio" name="this-happens" class="bug-info__radio u_hidden" id="input--often" required>
               <button type="button" class="bug-info__button bug-info__button--often" formnovalidate>
-                <label class="bug-info__button-label" for="often">OFTEN</label>
+                <label class="bug-info__button-label" for="input--often">OFTEN</label>
               </button>
 
-              <input type="radio" name="this-happens" class="bug-info__radio u_hidden" id="occasionally" required>
+              <input type="radio" name="this-happens" class="bug-info__radio u_hidden" id="input--occasionally" required>
               <button type="button" class="bug-info__button bug-info__button--occasionally" formnovalidate>
-                <label class="bug-info__button-label" for="occasionally">OCCASIONALLY</label>
+                <label class="bug-info__button-label" for="input--occasionally">OCCASIONALLY</label>
               </button>
 
-              <input type="radio" name="this-happens" class="bug-info__radio u_hidden" id="only-once" required>
+              <input type="radio" name="this-happens" class="bug-info__radio u_hidden" id="input--only-once" required>
               <button type="button" class="bug-info__button bug-info__button--only-once" formnovalidate>
-                <label class="bug-info__button-label" for="only-once">ONLY ONCE</label>
+                <label class="bug-info__button-label" for="input--only-once">ONLY ONCE</label>
               </button>
 
             </fieldset>
@@ -280,8 +280,8 @@
             <fieldset class="bug-info__environment">
               <legend class="bug-info__label bug-info__label--when-using">When using</legend>
 
-              <input type="hidden" value="">
-              <button type="button" name="device" class="bug-info__button select select--device" id="" required formnovalidate>DEVICE</button>
+              <input type="hidden" id="input--device" value="" required>
+              <button type="button" class="bug-info__button select select--device" id="select--device" formnovalidate>DEVICE</button>
               <ul class="select-list select-list--device">
                 <li class="select-list__option" data-value="pc">MICROSOFT PC</li>
                 <li class="select-list__option" data-value="mac">APPLE MAC</li>
@@ -294,9 +294,9 @@
                 <li class="select-list__option" data-value="other">OTHER (Please Specify)</li>
               </ul>
 
-
-              <select name="op-sys" class="bug-info__button select select--op-sys" id="" disabled required>
-
+              <input type="hidden" id="input--op-sys" value="" required>
+              <button type="button" class="bug-info__button select select--op-sys" id="select--op-sys" formnovalidate>OPERATING SYSTEM</button>
+              <ul class="select-list select-list--op-sys">
                 <li class="select-list__option" data-device="pc win-surface" data-value="win-10">WINDOWS 10</li>
                 <li class="select-list__option" data-device="pc win-surface" data-value="win-8">WINDOWS 8</li>
                 <li class="select-list__option" data-device="pc" data-value="win-7">WINDOWS 7</li>
@@ -331,9 +331,12 @@
                 <li class="select-list__option" data-device="win-phone" data-value="win-mob-older">OLDER (Please Specify)</li>
 
                 <li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="op-sys-other">OTHER (Please Specify)</li>
-              </select>
 
-              <select name="browser" class="bug-info__button select select--browser" id="" disabled="true" required>
+              </ul>
+
+              <input type="hidden" id="input--browser" value="" required>
+              <button type="button" class="bug-info__button select select--browser" id="select--browser" formnovalidate>BROWSER</button>
+              <ul class="select-list select-list--op-sys">
                 <li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="chrome">CHROME</li>
                 <li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="firefox">FIREFOX</li>
                 <li class="select-list__option" data-device="mac iphone ipad" data-value="safari">SAFARI</li>
@@ -341,7 +344,7 @@
                 <li class="select-list__option" data-device="pc win-phone win-surface" data-value="ie-8">INTERNET EXPLORER-OLDER</li>
                 <li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="opera">OPERA</li>
                 <li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="browser-other">OTHER (Please Specify)</li>
-              </select>
+              </ul>
 
               <button type="button" class="bug-info__button bug-info__button--detect"  formnovalidate>DETECT FOR ME</button>
 
@@ -358,21 +361,21 @@
 
               <legend class="personal-info__label">Who needs to be contacted when this request is addressed?</legend>
 
-              <label for="name" class="contact__label">NAME</label>
-              <input type="text" class="contact__input" id="name" required>
+              <label for="input--name" class="contact__label">NAME</label
+              ><input autocomplete="name" type="text" class="contact__input" id="input--name" required>
 
-              <label for="email" class="contact__label">EMAIL</label>
-              <input type="email" class="contact__input" id="email" required>
+              <label for="input--email"  class="contact__label">EMAIL</label
+              ><input autocomplete="email" type="email" class="contact__input" id="input--email" required>
 
-              <label for="phone" class="contact__label">PHONE</label>
-              <input type="tel" class="contact__input" id="phone" required>
+              <label for="input--phone" class="contact__label">PHONE</label
+              ><input type="tel" autocomplete="tel" class="contact__input contact__input--phone" id="input--phone" required>
 
             </fieldset>
 
-            <label for="anything-else" class="personal-info__label">Is there anything else?</label>
-            <textarea name="anything-else" id="anything-else" cols="30" rows="10" class="textarea" required></textarea>
+            <label for="input--anything-else" class="personal-info__label">Is there anything else?</label>
+            <textarea name="anything-else" id="input--anything-else" class="input--anything-else" required></textarea>
 
-            <button type="submit" form="alert-form" class="form__submit"></button>
+            <button type="submit" form="alert-form" class="form__submit" id="form__submit">SUBMIT</button>
 
           </fieldset><!--end .personal-info-->
 
