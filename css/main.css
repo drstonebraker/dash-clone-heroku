@@ -1,3 +1,6 @@
+
+
+
 /*
 This document uses BEM naming conventions, learn more at: https://en.bem.info/
 
@@ -1010,7 +1013,7 @@ background: #404040
   }
 
   .dl-link {
-   margin-bottom: 0px;
+    margin-bottom: 0px;
   }
 
   .progress-label {
@@ -1260,10 +1263,12 @@ background: #404040
     width: 35%;
   }
 
+
   .alert-glyph {
     display:block;
     margin: 0 auto;
   }
+
 
   .alert-text {
     display:block;
@@ -1297,6 +1302,7 @@ background: #404040
     top: -15px;
   }
 
+/*
   .bug-info__button {
     height: 40px;
     width: 140px;
@@ -1305,8 +1311,102 @@ background: #404040
   .bug-info__button-label {
     padding-top: 16px;
   }
+  */
 
+  .alert-form {
+    padding-bottom: 76px;
+  }
 
+  .bug-info {
+    display: inline-block;
+    width: 64%;
+    padding: 0 4.8%;
+    box-sizing: border-box;
+    border-bottom: none;
+    border-right: solid 3px #dfdfdf;
+    margin-top: 28px;
+    vertical-align: top;
+  }
+
+  .bug-info__label {
+    padding-top: 15px;
+  }
+
+  .bug-info__label--this-happens, .bug-info__label--when-using {
+    padding-top: 50px;
+  }
+
+  .bug-info__textarea {
+    margin-bottom: 0px;
+  }
+
+  .bug-info__button {
+    height: 40px;
+    font-size: .7em;
+    margin-bottom: 0px;
+  }
+
+  .bug-info__button-label {
+    padding-top: 15px;
+  }
+
+  .select-group {
+    margin-bottom: 0px;
+  }
+
+  .bug-info__environment {
+    padding-bottom: 120px;
+  }
+
+  .personal-info {
+    display:inline-block;
+    width:36%;
+    height: 100%;
+    padding: 0 4.8%;
+    box-sizing: border-box;
+    vertical-align: top;
+    margin-top: 28px;
+  }
+
+  .personal-info__label {
+    padding-top: 15px;
+    margin-bottom: 30px;
+  }
+
+  .personal-info__label--anything-else {
+    padding-top: 50px;
+    margin-bottom: 13px;
+  }
+
+  .contact {
+    display: block;
+    width: 100%;
+
+  }
+
+  .contact__label {
+    font-size: .7em;
+  }
+
+  .contact__input--name {
+    margin-top: 0px;
+  }
+
+  .input--anything-else {
+    height: 100px;
+    margin-top: 0px;
+  }
+
+  .final-input {
+    display: block;
+    width: 100%;
+    margin: 0px;
+  }
+
+  .form__submit {
+    width: 45.1%;
+    height: 40px;
+  }
 
 
 
