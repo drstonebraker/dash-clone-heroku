@@ -70,29 +70,57 @@ $( document ).ready(function() {
     }
   })
 
-  //when device button is clicked, open the selections list
-  $('#select--device').click(function(){
-    if (!$('#select-list--device').is(":visible")) {
-      $(this).addClass('bug-info__button--selected'); //style button colors
-      $('#select-list--device').slideDown(150);
-    } else {
-      $(this).removeClass('bug-info__button--selected'); //remove button colors
-      $('#select-list--device').slideUp(150);
+  //when select button is clicked, open/close the selections list
+  function selectOpenClose(e) {
+    //if button is not disabled
+    if (!$('#select--'+e.data).hasClass('u_disabled')) {
+      //if button isn't already open
+      if (!$('#select-list--'+e.data).is(":visible")) {
+        //open it
+        $('#select-list--'+e.data).slideDown(150);
+      } else {
+        //close it
+        $('#select-list--'+e.data).slideUp(150);
+      }
     }
+  }
+
+  $('#select--device').on('click', null,'device', selectOpenClose);
+  $('#select--op-sys').on('click', null,'op-sys', selectOpenClose);
+  $('#select--browser').on('click', null,'browser', selectOpenClose);
+
+  /*$('#select--op-sys').click(function() {
+    $('#select-list--op-sys').slideDown(150);
+  });*/
+
+  //handle click of a device option
+  $('.select-list__option--device').click(function(){
+    $('#select-list--device').hide();
+    //change button color and content and selected attribute
+    $('#select--device').addClass('bug-info__button--selected').html($(this).html()).data().selected = true;
+    //add value to hidden input
+    $('#input--device').val($(this).data().value);
+    //remove disabled style on next button
+    $('#select--op-sys').removeClass('u_disabled');
+    //hide the options in the next
+    //reset later buttons
+
   });
 
-  //when somewhere other than an open selcect menu is clicked, close any open select menu
+  $('.select-list__option--device').click(function(){
+    $('#select-list--device').hide();
+    //change button color and content and selected attribute
+    $('#select--device').addClass('bug-info__button--selected').html($(this).html()).data().selected = true;
+    $('#select--op-sys').removeClass('u_disabled'); //remove disabled style on next button
+  });
+
+
+  //when somewhere other than an open select menu is clicked, close any open select menu
   $(document).click(function(event) {
     if(!$(event.target).closest('.select-list').length && !$(event.target).is('.select')) {
         if($('.select-list').is(":visible")) {
             $('.select-list').hide();
         }
-        //remove button colors if nothing selected
-        $('.select').each(function(){
-          if (!$(this).data().selected) {
-            $(this).removeClass('bug-info__button--selected');
-          }
-        });
     }
 })
 
