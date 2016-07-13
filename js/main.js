@@ -37,7 +37,9 @@ var clientData = {
 var isIE = /*@cc_on!@*/false || !!document.documentMode;
 var isEdge = !isIE && !!window.StyleMedia;
 
+//when alert button is clicked, open the form
 $( document ).ready(function() {
+
   $('#alert').click(function(){
 
     $(this).toggleClass('alert--x');
@@ -47,6 +49,7 @@ $( document ).ready(function() {
     $('#alert-glyph__exclamation').toggleClass('alert-glyph__exclamation-x');
     $('#alert-text__priority').toggleClass('alert-text__priority--x');
     $('#alert-text__close').toggleClass('alert-text__close--x');
+    $('#alert-form').slideToggle(500);
 
     //re-center the LABELS
     var recenterLabel = (Math.abs($('#alert-text__priority').width() - $('#alert-text__close').width()) / 2) - 4;
@@ -67,6 +70,31 @@ $( document ).ready(function() {
     }
   })
 
+  //when device button is clicked, open the selections list
+  $('#select--device').click(function(){
+    if (!$('#select-list--device').is(":visible")) {
+      $(this).addClass('bug-info__button--selected'); //style button colors
+      $('#select-list--device').slideDown(150);
+    } else {
+      $(this).removeClass('bug-info__button--selected'); //remove button colors
+      $('#select-list--device').slideUp(150);
+    }
+  });
+
+  //when somewhere other than an open selcect menu is clicked, close any open select menu
+  $(document).click(function(event) {
+    if(!$(event.target).closest('.select-list').length && !$(event.target).is('.select')) {
+        if($('.select-list').is(":visible")) {
+            $('.select-list').hide();
+        }
+        //remove button colors if nothing selected
+        $('.select').each(function(){
+          if (!$(this).data().selected) {
+            $(this).removeClass('bug-info__button--selected');
+          }
+        });
+    }
+})
 
 });
 

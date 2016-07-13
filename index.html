@@ -286,8 +286,8 @@
 
               <div class="select-group select-group--device">
                 <input type="hidden" id="input--device" value="" required><!--
-                --><button type="button" class="bug-info__button select select--device" id="select--device" formnovalidate>DEVICE</button><!--
-                --><ul class="select-list select-list--device"><!--
+                --><button type="button" class="bug-info__button select select--device" id="select--device" data-selected="false" formnovalidate>DEVICE</button><!--
+                --><ul class="select-list select-list--device" id="select-list--device"><!--
                 --><li class="select-list__option" data-value="pc">MICROSOFT PC</li><!--
                 --><li class="select-list__option" data-value="mac">APPLE MAC</li><!--
                 --><li class="select-list__option" data-value="android-phone">ANDROID PHONE</li><!--
@@ -302,7 +302,7 @@
 
               --><div class="select-group select-group--op-sys"><!--
                 --><input type="hidden" id="input--op-sys" value="" required><!--
-                --><button type="button" class="bug-info__button select select--op-sys u_disabled" id="select--op-sys" formnovalidate>OPERATING SYSTEM</button><!--
+                --><button type="button" class="bug-info__button select select--op-sys u_disabled" id="select--op-sys" data-selected="false" formnovalidate>OPERATING SYSTEM</button><!--
                 --><ul class="select-list select-list--op-sys"><!--
                 --><li class="select-list__option" data-device="pc win-surface" data-value="win-10">WINDOWS 10</li><!--
                   --><li class="select-list__option" data-device="pc win-surface" data-value="win-8">WINDOWS 8</li><!--
@@ -343,7 +343,7 @@
 
               --><div class="select-group select-group--browser"><!--
                 --><input type="hidden" id="input--browser" value="" required><!--
-                --><button type="button" class="bug-info__button select select--browser u_disabled" id="select--browser" formnovalidate>BROWSER</button><!--
+                --><button type="button" class="bug-info__button select select--browser u_disabled" id="select--browser" data-selected="false" formnovalidate>BROWSER</button><!--
                 --><ul class="select-list select-list--op-sys"><!--
                   --><li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="chrome">CHROME</li><!--
                   --><li class="select-list__option" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="firefox">FIREFOX</li><!--
