@@ -71,6 +71,22 @@ $( document ).ready(function() {
     }
   })
 
+  //if IE, workaround bug to check radio inputs on button click
+  if (isIE) {
+    $('#bug-info__button--every-time').click(function() {
+      $("#input--every-time").prop("checked", true);
+    });
+    $('#bug-info__button--often').click(function() {
+      $("#input--often").prop("checked", true);
+    });
+    $('#bug-info__button--occasionally').click(function() {
+      $("#input--occasionally").prop("checked", true);
+    });
+    $('#bug-info__button--only-once').click(function() {
+      $("#input--only-once").prop("checked", true);
+    });
+  }
+
   jQuery.fn.extend({
     isDisabled: function() {
       return $(this).hasClass('u_disabled');
