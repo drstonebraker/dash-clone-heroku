@@ -350,13 +350,13 @@
                   --><li class="select-list__option select-list__option--browser" data-device="mac iphone ipad" data-value="safari">SAFARI</li><!--
                   --><li class="select-list__option select-list__option--browser" data-device="pc win-phone win-surface" data-value="edge">MICROSOFT EDGE</li><!--
                   --><li class="select-list__option select-list__option--browser" data-device="pc win-phone win-surface" data-value="ie-11">IE 9, 10, 11</li><!--
-                  --><li class="select-list__option select-list__option--browser" data-device="pc win-phone win-surface" data-value="ie-8">IE-OLDER</li><!--
+                  --><li class="select-list__option select-list__option--browser" data-device="pc win-phone win-surface" data-value="ie-older">IE-OLDER</li><!--
                   --><li class="select-list__option select-list__option--browser" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="opera">OPERA</li><!--
                   --><li class="select-list__option select-list__option--browser" data-device="pc mac android-phone android-tablet iphone ipad win-phone win-surface other" data-value="browser-other">OTHER (Please Specify)</li><!--
                 --></ul><!--
               --></div><!--
 
-              --><button type="button" class="select-group select-group--detect bug-info__button bug-info__button--detect"  formnovalidate>DETECT FOR ME</button>
+              --><button type="button" class="select-group select-group--detect bug-info__button bug-info__button--detect"  id="select-detect" formnovalidate>DETECT FOR ME</button>
 
             </fieldset>
 
@@ -397,13 +397,21 @@
 
 
 
+        <script>
+            (function(){var p=[],w=window,d=document,e=f=0;p.push('ua='+encodeURIComponent(navigator.userAgent));e|=w.ActiveXObject?1:0;e|=w.opera?2:0;e|=w.chrome?4:0;
+            e|='getBoxObjectFor' in d || 'mozInnerScreenX' in w?8:0;e|=('WebKitCSSMatrix' in w||'WebKitPoint' in w||'webkitStorageInfo' in w||'webkitURL' in w)?16:0;
+            e|=(e&16&&({}.toString).toString().indexOf("\n")===-1)?32:0;p.push('e='+e);f|='sandbox' in d.createElement('iframe')?1:0;f|='WebSocket' in w?2:0;
+            f|=w.Worker?4:0;f|=w.applicationCache?8:0;f|=w.history && history.pushState?16:0;f|=d.documentElement.webkitRequestFullScreen?32:0;f|='FileReader' in w?64:0;
+            p.push('f='+f);p.push('r='+Math.random().toString(36).substring(7));p.push('w='+screen.width);p.push('h='+screen.height);var s=d.createElement('script');
+            s.src='//dashboard-dsto.c9users.io/whichbrowser/detect.js?' + p.join('&');d.getElementsByTagName('head')[0].appendChild(s);})();
+        </script>
 
         <script   src="https://code.jquery.com/jquery-3.0.0.js"   integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="   crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script   src="https://code.jquery.com/jquery-3.0.0.js"   integrity="sha256-jrPLZ+8vDxt2FnE1zvZXCkCcebI/C8Dt5xyaQBjxQIo="   crossorigin="anonymous"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <link rel="stylesheet" href="css/jquery.modal.css" type="text/css" media="screen" />
-
+        
 
 
     </body>

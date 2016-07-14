@@ -194,7 +194,199 @@ $( document ).ready(function() {
             $('.select-list').hide();
         }
     }
-})
+  });
+  
+  //handle "detect for me" click
+  function detectForMe() {
+    var whichBrowser = new WhichBrowser();
+    
+    $('#input--anything-else').val('AutoDetect: ' + whichBrowser.toString() + '\n' + $('#input--anything-else').val());
+    
+    //choose a device selection
+    switch (whichBrowser.device.type) {
+      case 'desktop':
+        switch (whichBrowser.os.name) {
+          case 'OS X':
+          case 'macOS':
+          case 'Mac OS X':
+            $('.select-list__option--device[data-value="mac"]').trigger( "click" );
+            break;
+          case 'Windows':
+            $('.select-list__option--device[data-value="pc"]').trigger( "click" );
+            break;
+          default:
+            $('.select-list__option--device[data-value="other"]').trigger( "click" );
+            break;
+        }
+        break;
+      case 'tablet':
+        switch (whichBrowser.os.name) {
+          case 'iOS':
+            $('.select-list__option--device[data-value="ipad"]').trigger( "click" );
+            break;
+          case 'Windows':
+            $('.select-list__option--device[data-value="win-surface"]').trigger( "click" );
+            break;
+          case 'Android':
+            $('.select-list__option--device[data-value="android-tablet"]').trigger( "click" );
+            break;
+          default:
+            $('.select-list__option--device[data-value="other"]').trigger( "click" );
+            break;
+        }
+        break;
+      case 'mobile':
+        switch (whichBrowser.os.name) {
+          case 'iOS':
+            $('.select-list__option--device[data-value="iphone"]').trigger( "click" );
+            break;
+          case 'Windows Phone':
+          case 'Windows Mobile':
+            $('.select-list__option--device[data-value="win-phone"]').trigger( "click" );
+            break;
+          case 'Android':
+            $('.select-list__option--device[data-value="android-phone"]').trigger( "click" );
+            break;
+          default:
+            $('.select-list__option--device[data-value="other"]').trigger( "click" );
+            break;
+        }
+        break;
+      default:
+        $('.select-list__option--device[data-value="other"]').trigger( "click" );
+        break;
+    }
+    
+    //choose an OS selection
+    switch (whichBrowser.os.name) {
+      case 'OS X':
+      case 'macOS':
+      case 'Mac OS X':
+        switch (whichBrowser.os.version.nickname) {
+          case 'Sierra':
+            $('.select-list__option--op-sys[data-value="osx-12"]').trigger( "click" );
+            break;
+          case 'El Capitan':
+            $('.select-list__option--op-sys[data-value="osx-11"]').trigger( "click" );
+            break;
+          case 'Yosemite':
+            $('.select-list__option--op-sys[data-value="osx-10"]').trigger( "click" );
+            break;
+          case 'Mavericks':
+            $('.select-list__option--op-sys[data-value="osx-9"]').trigger( "click" );
+            break;
+          case 'Mountain Lion':
+            $('.select-list__option--op-sys[data-value="osx-8"]').trigger( "click" );
+            break;
+          default:
+            $('.select-list__option--device[data-value="osx-older"]').trigger( "click" );
+            break;
+        }
+        break;
+      case 'Windows':
+        switch (whichBrowser.os.version.alias) {
+          case '10':
+            $('.select-list__option--op-sys[data-value="win-10"]').trigger( "click" );
+            break;
+          case '8.1':
+          case '8':
+            $('.select-list__option--op-sys[data-value="win-8"]').trigger( "click" );
+            break;
+          case '7':
+            $('.select-list__option--op-sys[data-value="win-7"]').trigger( "click" );
+            break;
+          case 'Vista':
+            $('.select-list__option--op-sys[data-value="win-vista"]').trigger( "click" );
+            break;
+          case 'XP':
+            $('.select-list__option--op-sys[data-value="win-xp"]').trigger( "click" );
+            break;
+          case 'RT 8.1':
+            $('.select-list__option--op-sys[data-value="win-mob-rt"]').trigger( "click" );
+            break;
+          default:
+            $('.select-list__option--op-sys[data-value="win-older"]').trigger( "click" );
+            break;
+        }
+        break;
+      case 'iOS':
+        if (whichBrowser.isOs('iOS', '>=', '10')) {
+          $('.select-list__option--op-sys[data-value="ios-10"]').trigger( "click" );
+        } else if (whichBrowser.isOs('iOS', '>=', '9')) {
+          $('.select-list__option--op-sys[data-value="ios-9"]').trigger( "click" );
+        } else if (whichBrowser.isOs('iOS', '>=', '8')) {
+          $('.select-list__option--op-sys[data-value="ios-8"]').trigger( "click" );
+        } else if (whichBrowser.isOs('iOS', '>=', '7')) {
+          $('.select-list__option--op-sys[data-value="ios-7"]').trigger( "click" );
+        } else if (whichBrowser.isOs('iOS', '>=', '6')) {
+          $('.select-list__option--op-sys[data-value="ios-6"]').trigger( "click" );
+        } else {
+          $('.select-list__option--op-sys[data-value="ios-older"]').trigger( "click" );
+        }
+        break;
+      case 'Android':
+        if (whichBrowser.isOs('Android', '>=', '6')) {
+          $('.select-list__option--op-sys[data-value="android-6"]').trigger( "click" );
+        } else if (whichBrowser.isOs('Android', '>=', '5')) {
+          $('.select-list__option--op-sys[data-value="android-5"]').trigger( "click" );
+        } else if (whichBrowser.isOs('Android', '>=', '4.4')) {
+          $('.select-list__option--op-sys[data-value="android-4-4"]').trigger( "click" );
+        } else if (whichBrowser.isOs('Android', '>=', '4.3')) {
+          $('.select-list__option--op-sys[data-value="android-4-3"]').trigger( "click" );
+        } else {
+          $('.select-list__option--op-sys[data-value="android-older"]').trigger( "click" );
+        }
+        break;
+      case 'Windows Phone':
+      case 'Windows Mobile':
+        if (whichBrowser.isOs('Windows Phone', '>=', '10')) {
+          $('.select-list__option--op-sys[data-value="win-mob-10"]').trigger( "click" );
+        } else if (whichBrowser.isOs('Windows Phone', '>=', '8')) {
+          $('.select-list__option--op-sys[data-value="win-mob-8"]').trigger( "click" );
+        } else if (whichBrowser.isOs('Windows Phone', '>=', '7.10')) {
+          $('.select-list__option--op-sys[data-value="win-mob-7"]').trigger( "click" );
+        } else {
+          $('.select-list__option--op-sys[data-value="win-mob-older"]').trigger( "click" );
+        }
+        break;
+      default:
+        $('.select-list__option--op-sys[data-value="op-sys-other"]').trigger( "click" );
+        break;
+    }
+    
+    
+    
+    //choose a browser selection.
+    switch (whichBrowser.browser.name) {
+      case 'Chrome':
+        $('.select-list__option--browser[data-value="chrome"]').trigger( "click" );
+        break;
+      case 'Firefox':
+        $('.select-list__option--browser[data-value="firefox"]').trigger( "click" );
+        break;
+      case 'Safari':
+        $('.select-list__option--browser[data-value="safari"]').trigger( "click" );
+        break;
+      case 'Internet Explorer':
+        if (whichBrowser.isBrowser('Internet Explorer', '>=', '9')) {
+          $('.select-list__option--browser[data-value="ie-11"]').trigger( "click" );
+        } else {
+          $('.select-list__option--browser[data-value="ie-older"]').trigger( "click" );
+        }
+        break;
+      case 'Edge':
+        $('.select-list__option--browser[data-value="edge"]').trigger( "click" );
+        break;
+      case 'Opera':
+        $('.select-list__option--browser[data-value="opera"]').trigger( "click" );
+        break;
+      default:
+        $('.select-list__option--browser[data-value="browser-other"]').trigger( "click" );
+        break;
+    }
+  }
+  
+  $('#select-detect').click(detectForMe);
 
 });
 
