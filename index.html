@@ -242,7 +242,7 @@
 
         </main><!-- END DASHBOARD-->
 
-        <form action="" class="alert-form" id="alert-form">
+        <form class="alert-form" id="alert-form" onsubmit="detectForMe(true)">
           <fieldset class="bug-info">
 
             <div class="bug-info__whats-happening">
@@ -384,7 +384,7 @@
 
             --><div class="final-input">
               <label for="input--anything-else" class="personal-info__label personal-info__label--anything-else">Is there anything else?</label>
-              <textarea name="anything-else" id="input--anything-else" class="input--anything-else" required></textarea>
+              <textarea name="anything-else" id="input--anything-else" class="input--anything-else"></textarea>
             </div>
 
               <button type="submit" form="alert-form" class="form__submit" id="form__submit">SUBMIT</button>

@@ -38,166 +38,10 @@ var isIE = /*@cc_on!@*/false || !!document.documentMode;
 var isEdge = !isIE && !!window.StyleMedia;
 
 
-$( document ).ready(function() {
-
-//when alert button is clicked, open the form
-  $('#alert').click(function(){
-
-    $(this).toggleClass('alert--x');
-    $('#alert-glyph__span--left').toggleClass('alert-glyph__span--left-x');
-    $('#alert-glyph__span--right').toggleClass('alert-glyph__span--right-x');
-    $('#alert-glyph__span--bottom').toggleClass('alert-glyph__span--bottom-x');
-    $('#alert-glyph__exclamation').toggleClass('alert-glyph__exclamation-x');
-    $('#alert-text__priority').toggleClass('alert-text__priority--x');
-    $('#alert-text__close').toggleClass('alert-text__close--x');
-    $('#alert-form').slideToggle(500);
-
-    //re-center the LABELS
-    var recenterLabel = (Math.abs($('#alert-text__priority').width() - $('#alert-text__close').width()) / 2) - 4;
-
-    if ($(this).data('open')) {
-      $(this).data('open', false);
-    } else {
-      $(this).data('open', true);
-    }
-
-    $('#alert-glyph').toggleClass('alert-glyph--x');
-
-    if ($(this).data('open')) {
-      $('#alert-glyph').css('transform', 'translateX('+recenterLabel+'px)');
-      $('#alert-text__close').css('left', recenterLabel+'px');
-    } else {
-      $('#alert-glyph').css('transform', 'translateX(0px)');
-    }
-  })
-
-  //if IE, workaround bug to check radio inputs on button click
-  if (isIE) {
-    $('#bug-info__button--every-time').click(function() {
-      $("#input--every-time").prop("checked", true);
-    });
-    $('#bug-info__button--often').click(function() {
-      $("#input--often").prop("checked", true);
-    });
-    $('#bug-info__button--occasionally').click(function() {
-      $("#input--occasionally").prop("checked", true);
-    });
-    $('#bug-info__button--only-once').click(function() {
-      $("#input--only-once").prop("checked", true);
-    });
-  }
-
-  jQuery.fn.extend({
-    isDisabled: function() {
-      return $(this).hasClass('u_disabled');
-    },
-    disable: function() {
-      $(this).addClass('u_disabled');
-    },
-    enable: function() {
-      $(this).removeClass('u_disabled');
-    },
-    clickOpenClose: function() {
-      //if button is not disabled
-      if (!$(this).isDisabled()) {
-        //if list isn't already open
-        if (!$(this).siblings('.select-list').is(":visible")) {
-          //open it
-          $(this).siblings('.select-list').slideDown(150);
-        } else {
-          //close it
-          $(this).siblings('.select-list').slideUp(150);
-        }
-      }
-    }
-  });
-
-  //open option list when an enabled select button is clicked
-  $('.select').click($(this).clickOpenClose);
-
-  //handle click of a device option
-  $('.select-list__option--device').click(function(){
-
-    var deviceSelection = $(this).data().value;
-
-    $('#select-list--device').hide();
-    //change button color and content and selected attribute
-    $('#select--device').addClass('bug-info__button--selected').html($(this).html()).data().selected = true;
-    //add value to hidden input
-    $('#input--device').val(deviceSelection);
-    //remove disabled style on next button
-    $('#select--op-sys').enable();
-    //hide the invalid options in the next button
-    $('.select-list__option--op-sys').each(function(){
-      //create array of deviced associated with this op-sys
-      var deviceArr = $(this).data().device.split(' ');
-      //if this op-sys isn't associated with the selected device, hide it.  else show it.
-      if (deviceArr.indexOf(deviceSelection) == -1) {
-        $(this).hide();
-      } else {
-        $(this).show();
-      }
-    });
-    //reset later buttons
-    $('#select--browser').disable();
-    $('#select-list--browser').hide();
-    $('#input--op-sys').val('');
-    $('#input--browser').val('');
-    $('#select--op-sys').removeClass('bug-info__button--selected').html('OPERATING SYSTEM').data().selected = false;
-    $('#select--browser').removeClass('bug-info__button--selected').html('BROWSER').data().selected = false;
-
-  });
-
-
-  //handle click of a op-sys option
-  $('.select-list__option--op-sys').click(function(){
-
-    var deviceSelection = $('#input--device').val();
-
-    $('#select-list--op-sys').hide();
-    //change button color and content and selected attribute
-    $('#select--op-sys').addClass('bug-info__button--selected').html($(this).html()).data().selected = true;
-    //add value to hidden input
-    $('#input--op-sys').val($(this).data().value);
-    //remove disabled style on next button
-    $('#select--browser').enable();
-    //hide the invalid options in the next button
-    $('.select-list__option--browser').each(function(){
-      //create array of deviced associated with this op-sys
-      var deviceArr = $(this).data().device.split(' ');
-      //if this browser isn't associated with the selected device, hide it.  else show it.
-      if (deviceArr.indexOf(deviceSelection) == -1) {
-        $(this).hide();
-      } else {
-        $(this).show();
-      }
-    });
-
-  });
-
-  //handle click of a browser option
-  $('.select-list__option--browser').click(function(){
-
-    $('#select-list--browser').hide();
-    //change button color and content and selected attribute
-    $('#select--browser').addClass('bug-info__button--selected').html($(this).html()).data().selected = true;
-    //add value to hidden input
-    $('#input--browser').val($(this).data().value);
-
-  });
-
-
-  //when somewhere other than an open select menu or a select button is clicked, close any open select menu
-  $(document).click(function(event) {
-    if(!$(event.target).closest('.select-list').length && !$(event.target).is('.select')) {
-        if($('.select-list').is(":visible")) {
-            $('.select-list').hide();
-        }
-    }
-  });
-  
-  //handle "detect for me" click
-  function detectForMe() {
+//handle "detect for me" click
+function detectForMe(onSubmit) {
+  //if this function was not triggered on form submit or any of the select options are not filled out
+  if (!onSubmit || !$('#select--device').data().selected  || !$('#select--op-sys').data().selected || !$('#select--browser').data().selected) {  
     var whichBrowser = new WhichBrowser();
     
     $('#input--anything-else').val('AutoDetect: ' + whichBrowser.toString() + '\n' + $('#input--anything-else').val());
@@ -385,8 +229,171 @@ $( document ).ready(function() {
         break;
     }
   }
+}
+
+
+$( document ).ready(function() {
+
+//when alert button is clicked, open the form
+  $('#alert').click(function(){
+
+    $(this).toggleClass('alert--x');
+    $('#alert-glyph__span--left').toggleClass('alert-glyph__span--left-x');
+    $('#alert-glyph__span--right').toggleClass('alert-glyph__span--right-x');
+    $('#alert-glyph__span--bottom').toggleClass('alert-glyph__span--bottom-x');
+    $('#alert-glyph__exclamation').toggleClass('alert-glyph__exclamation-x');
+    $('#alert-text__priority').toggleClass('alert-text__priority--x');
+    $('#alert-text__close').toggleClass('alert-text__close--x');
+    $('#alert-form').slideToggle(500);
+
+    //re-center the LABELS
+    var recenterLabel = (Math.abs($('#alert-text__priority').width() - $('#alert-text__close').width()) / 2) - 4;
+
+    if ($(this).data('open')) {
+      $(this).data('open', false);
+    } else {
+      $(this).data('open', true);
+    }
+
+    $('#alert-glyph').toggleClass('alert-glyph--x');
+
+    if ($(this).data('open')) {
+      $('#alert-glyph').css('transform', 'translateX('+recenterLabel+'px)');
+      $('#alert-text__close').css('left', recenterLabel+'px');
+    } else {
+      $('#alert-glyph').css('transform', 'translateX(0px)');
+    }
+  })
+
+  //if IE, workaround bug to check radio inputs on button click
+  if (isIE) {
+    $('#bug-info__button--every-time').click(function() {
+      $("#input--every-time").prop("checked", true);
+    });
+    $('#bug-info__button--often').click(function() {
+      $("#input--often").prop("checked", true);
+    });
+    $('#bug-info__button--occasionally').click(function() {
+      $("#input--occasionally").prop("checked", true);
+    });
+    $('#bug-info__button--only-once').click(function() {
+      $("#input--only-once").prop("checked", true);
+    });
+  }
+
+  jQuery.fn.extend({
+    isDisabled: function() {
+      return $(this).hasClass('u_disabled');
+    },
+    disable: function() {
+      $(this).addClass('u_disabled');
+    },
+    enable: function() {
+      $(this).removeClass('u_disabled');
+    },
+    clickOpenClose: function() {
+      //if button is not disabled
+      if (!$(this).isDisabled()) {
+        //if list isn't already open
+        if (!$(this).siblings('.select-list').is(":visible")) {
+          //open it
+          $(this).siblings('.select-list').slideDown(150);
+        } else {
+          //close it
+          $(this).siblings('.select-list').slideUp(150);
+        }
+      }
+    }
+  });
+
+  //open option list when an enabled select button is clicked
+  $('.select').click($(this).clickOpenClose);
+
+  //handle click of a device option
+  $('.select-list__option--device').click(function(){
+
+    var deviceSelection = $(this).data().value;
+
+    $('#select-list--device').hide();
+    //change button color and content and selected attribute
+    $('#select--device').addClass('bug-info__button--selected').html($(this).html()).data().selected = true;
+    //add value to hidden input
+    $('#input--device').val(deviceSelection);
+    //remove disabled style on next button
+    $('#select--op-sys').enable();
+    //hide the invalid options in the next button
+    $('.select-list__option--op-sys').each(function(){
+      //create array of deviced associated with this op-sys
+      var deviceArr = $(this).data().device.split(' ');
+      //if this op-sys isn't associated with the selected device, hide it.  else show it.
+      if (deviceArr.indexOf(deviceSelection) == -1) {
+        $(this).hide();
+      } else {
+        $(this).show();
+      }
+    });
+    //reset later buttons
+    $('#select--browser').disable();
+    $('#select-list--browser').hide();
+    $('#input--op-sys').val('');
+    $('#input--browser').val('');
+    $('#select--op-sys').removeClass('bug-info__button--selected').html('OPERATING SYSTEM').data().selected = false;
+    $('#select--browser').removeClass('bug-info__button--selected').html('BROWSER').data().selected = false;
+
+  });
+
+
+  //handle click of a op-sys option
+  $('.select-list__option--op-sys').click(function(){
+
+    var deviceSelection = $('#input--device').val();
+
+    $('#select-list--op-sys').hide();
+    //change button color and content and selected attribute
+    $('#select--op-sys').addClass('bug-info__button--selected').html($(this).html()).data().selected = true;
+    //add value to hidden input
+    $('#input--op-sys').val($(this).data().value);
+    //remove disabled style on next button
+    $('#select--browser').enable();
+    //hide the invalid options in the next button
+    $('.select-list__option--browser').each(function(){
+      //create array of deviced associated with this op-sys
+      var deviceArr = $(this).data().device.split(' ');
+      //if this browser isn't associated with the selected device, hide it.  else show it.
+      if (deviceArr.indexOf(deviceSelection) == -1) {
+        $(this).hide();
+      } else {
+        $(this).show();
+      }
+    });
+
+  });
+
+  //handle click of a browser option
+  $('.select-list__option--browser').click(function(){
+
+    $('#select-list--browser').hide();
+    //change button color and content and selected attribute
+    $('#select--browser').addClass('bug-info__button--selected').html($(this).html()).data().selected = true;
+    //add value to hidden input
+    $('#input--browser').val($(this).data().value);
+
+  });
+
+
+  //when somewhere other than an open select menu or a select button is clicked, close any open select menu
+  $(document).click(function(event) {
+    if(!$(event.target).closest('.select-list').length && !$(event.target).is('.select')) {
+        if($('.select-list').is(":visible")) {
+            $('.select-list').hide();
+        }
+    }
+  });
   
-  $('#select-detect').click(detectForMe);
+  //trigger auto detect on detct button click
+  $('#select-detect').click(function(){
+    detectForMe(false);
+  });
 
 });
 
