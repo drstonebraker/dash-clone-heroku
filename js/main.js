@@ -10,7 +10,7 @@ var animationEasing = "easeOut";
 var clientData = {
   startingMonth: 3, //jan=0, feb=1...
   monthlyHours: 6,
-  monthlyBal: { //this can be changed to an array but is an object to easier viewing/editing
+  monthlyBal: { //this can be changed to an array but is an object for easier viewing/editing
     0: 0,
     1: 0,
     2: 0,
@@ -37,9 +37,10 @@ var clientData = {
 var isIE = /*@cc_on!@*/false || !!document.documentMode;
 var isEdge = !isIE && !!window.StyleMedia;
 
-//when alert button is clicked, open the form
+
 $( document ).ready(function() {
 
+//when alert button is clicked, open the form
   $('#alert').click(function(){
 
     $(this).toggleClass('alert--x');
@@ -70,52 +71,107 @@ $( document ).ready(function() {
     }
   })
 
-  //when select button is clicked, open/close the selections list
-  function selectOpenClose(e) {
-    //if button is not disabled
-    if (!$('#select--'+e.data).hasClass('u_disabled')) {
-      //if button isn't already open
-      if (!$('#select-list--'+e.data).is(":visible")) {
-        //open it
-        $('#select-list--'+e.data).slideDown(150);
-      } else {
-        //close it
-        $('#select-list--'+e.data).slideUp(150);
+  jQuery.fn.extend({
+    isDisabled: function() {
+      return $(this).hasClass('u_disabled');
+    },
+    disable: function() {
+      $(this).addClass('u_disabled');
+    },
+    enable: function() {
+      $(this).removeClass('u_disabled');
+    },
+    clickOpenClose: function() {
+      //if button is not disabled
+      if (!$(this).isDisabled()) {
+        //if list isn't already open
+        if (!$(this).siblings('.select-list').is(":visible")) {
+          //open it
+          $(this).siblings('.select-list').slideDown(150);
+        } else {
+          //close it
+          $(this).siblings('.select-list').slideUp(150);
+        }
       }
     }
-  }
+  });
 
-  $('#select--device').on('click', null,'device', selectOpenClose);
-  $('#select--op-sys').on('click', null,'op-sys', selectOpenClose);
-  $('#select--browser').on('click', null,'browser', selectOpenClose);
-
-  /*$('#select--op-sys').click(function() {
-    $('#select-list--op-sys').slideDown(150);
-  });*/
+  //open option list when an enabled select button is clicked
+  $('.select').click($(this).clickOpenClose);
 
   //handle click of a device option
   $('.select-list__option--device').click(function(){
+
+    var deviceSelection = $(this).data().value;
+
     $('#select-list--device').hide();
     //change button color and content and selected attribute
     $('#select--device').addClass('bug-info__button--selected').html($(this).html()).data().selected = true;
     //add value to hidden input
-    $('#input--device').val($(this).data().value);
+    $('#input--device').val(deviceSelection);
     //remove disabled style on next button
-    $('#select--op-sys').removeClass('u_disabled');
-    //hide the options in the next
+    $('#select--op-sys').enable();
+    //hide the invalid options in the next button
+    $('.select-list__option--op-sys').each(function(){
+      //create array of deviced associated with this op-sys
+      var deviceArr = $(this).data().device.split(' ');
+      //if this op-sys isn't associated with the selected device, hide it.  else show it.
+      if (deviceArr.indexOf(deviceSelection) == -1) {
+        $(this).hide();
+      } else {
+        $(this).show();
+      }
+    });
     //reset later buttons
+    $('#select--browser').disable();
+    $('#select-list--browser').hide();
+    $('#input--op-sys').val('');
+    $('#input--browser').val('');
+    $('#select--op-sys').removeClass('bug-info__button--selected').html('OPERATING SYSTEM').data().selected = false;
+    $('#select--browser').removeClass('bug-info__button--selected').html('BROWSER').data().selected = false;
 
   });
 
-  $('.select-list__option--device').click(function(){
-    $('#select-list--device').hide();
+
+  //handle click of a op-sys option
+  $('.select-list__option--op-sys').click(function(){
+
+    var deviceSelection = $('#input--device').val();
+
+    $('#select-list--op-sys').hide();
     //change button color and content and selected attribute
-    $('#select--device').addClass('bug-info__button--selected').html($(this).html()).data().selected = true;
-    $('#select--op-sys').removeClass('u_disabled'); //remove disabled style on next button
+    $('#select--op-sys').addClass('bug-info__button--selected').html($(this).html()).data().selected = true;
+    //add value to hidden input
+    $('#input--op-sys').val($(this).data().value);
+    //remove disabled style on next button
+    $('#select--browser').enable();
+    //hide the invalid options in the next button
+    $('.select-list__option--browser').each(function(){
+      //create array of deviced associated with this op-sys
+      var deviceArr = $(this).data().device.split(' ');
+      //if this browser isn't associated with the selected device, hide it.  else show it.
+      if (deviceArr.indexOf(deviceSelection) == -1) {
+        $(this).hide();
+      } else {
+        $(this).show();
+      }
+    });
+
+  });
+
+  //handle click of a browser option
+  $('.select-list__option--browser').click(function(){
+
+    $('#select-list--browser').hide();
+    //change button color and content and selected attribute
+    $('#select--browser').addClass('bug-info__button--selected').html($(this).html()).data().selected = true;
+    //add value to hidden input
+    $('#input--browser').val($(this).data().value);
+
   });
 
 
-  //when somewhere other than an open select menu is clicked, close any open select menu
+  //when somewhere other than an open select menu or a select button is clicked, close any open select menu
   $(document).click(function(event) {
     if(!$(event.target).closest('.select-list').length && !$(event.target).is('.select')) {
         if($('.select-list').is(":visible")) {
