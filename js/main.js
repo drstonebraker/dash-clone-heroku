@@ -29,9 +29,13 @@ var clientData = {
   lastBackup: new Date('2016-12-14T07:32:00'),
   monthlyBenefits: '',
 };
-//$('#benefits-modal__text').html(clientData.monthlyBenefits); //uncomment this and add client's description of monthly benefits
+var monthlyBenefits = "<h4>These are your current monthly benefits.</h4><ul><li>Benefit number 1.</li><li>Benefit number 2.</li></ul>";
 
-//end of configurable vars
+//*********************************
+// END OF CONFIGURABLE VARS
+//*********************************
+
+
 
 //detect IE and Edge
 var isIE = /*@cc_on!@*/false || !!document.documentMode;
@@ -233,6 +237,17 @@ function detectForMe(onSubmit) {
 
 
 $( document ).ready(function() {
+  
+  //when benefits button is clicked, open the tooltip
+  $('#benefits__content').html(monthlyBenefits);
+  $('#benefits').tooltipster({
+   animation: 'fade',
+   delay: 100,
+   trigger: 'click',
+   plugins: ['sideTip', 'scrollableTip'],
+   content: $('#benefits__content').show().detach(),
+   contentCloning: false
+  });
 
 //when alert button is clicked, open the form
   $('#alert').click(function(){
