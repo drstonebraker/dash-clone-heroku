@@ -1,5 +1,22 @@
 var today = new Date();
 var currentMonth = today.getMonth();
+const BACKUP_OPTIONS = [1, 7, 14, 30] //num of days between each backup... used to randomly set date for demonstration
+var demonstration = true // to turn off some logic intended only for showing random client data
+
+const MONTHS = [
+  'JAN',
+  'FEB',
+  'MAR',
+  'APR',
+  'MAY',
+  'JUN',
+  'JUL',
+  'AUG',
+  'SEP',
+  'OCT',
+  'NOV',
+  'DEC'
+]
 
 /* ==========================================================================
    USE THESE VARS TO CONFIGURE DASHBOARD FOR INDIVIDUAL CLIENT
@@ -7,29 +24,40 @@ var currentMonth = today.getMonth();
 var animationDuration = 1500;
 var animationEasing = "easeOut";
 
-var clientData = {
-  startingMonth: 3, //jan=0, feb=1...
-  monthlyHours: 6,
-  monthlyBal: { //this can be changed to an array but is an object for easier viewing/editing
-    0: 0,
-    1: 0,
-    2: 0,
-    3: 4,
-    4: 0,
-    5: 2,
-    6: 6,
-    7: 5,
-    8: 0,
-    9: 0,
-    10: 0,
-    11: 0
-  },
-  annualHours: 36,
-  annualBal: 17,
-  lastBackup: new Date('2015-12-14T07:32:00'),
-  monthlyBenefits: '',
+var clientData = new function() {
+  this.startingMonth = Math.floor(Math.random() * 12); //jan=0, feb=1...
+  this.monthlyHours = Math.floor(Math.random() * 9) + 3;
+  function setMonthlyBal(month) {
+    if (month <= currentMonth && month >= this.startingMonth) {
+      return Math.floor(Math.random() * (this.monthlyHours + 1))
+    }
+  };
+  this.monthlyBal = [ //sets balances for each month in order
+    setMonthlyBal.call(this, 0), //jan
+    setMonthlyBal.call(this, 1), //feb
+    setMonthlyBal.call(this, 2), //mar
+    setMonthlyBal.call(this, 3), //apr
+    setMonthlyBal.call(this, 4), //may
+    setMonthlyBal.call(this, 5), //jun
+    setMonthlyBal.call(this, 6), //jul
+    setMonthlyBal.call(this, 7), //aug
+    setMonthlyBal.call(this, 8), //sep
+    setMonthlyBal.call(this, 9), //oct
+    setMonthlyBal.call(this, 10),//nov
+    setMonthlyBal.call(this, 11) //dec
+  ];
+
+  if (demonstration && this.monthlyBal.indexOf(this.monthlyHours) == -1) {
+    this.monthlyBal[Math.floor(Math.random() * (currentMonth - this.startingMonth)) + this.startingMonth] = this.monthlyHours
+  } //for demonstration purposes, set one random month to full usage (so annual usage makes sense)
+
+  this.annualHours = 12 * (Math.floor(Math.random() * 4) + 1);
+  this.annualBal = Math.floor(Math.random() * this.annualHours) + 1;
+  this.backupFrequency = BACKUP_OPTIONS[Math.floor(Math.random() * BACKUP_OPTIONS.length)];
+  this.lastBackup = new Date(Math.floor(Math.random() * 86400000 * this.backupFrequency) + (Date.now() - 86400000 * this.backupFrequency));
+  this.monthlyBenefits = '';
 };
-var monthlyBenefits = "<h4>These are your current monthly benefits.</h4><ul><li>Benefit number 1.</li><li>Benefit number 2.</li></ul>";
+var monthlyBenefits = "<h4>Your subscription plan includes:</h4><ul><li>" + clientData.monthlyHours + " hours of work each month</li><li>" + clientData.annualHours + " additional hours of work each year (" + MONTHS[clientData.startingMonth] + " through " + (MONTHS[clientData.startingMonth - 1] || "DEC") + ")</li><li>Automatic backup every " + clientData.backupFrequency + " days</li></ul></br>";
 
 //*********************************
 // END OF CONFIGURABLE VARS
@@ -248,6 +276,26 @@ $( document ).ready(function() {
    content: $('#benefits__content').show().detach(),
    contentCloning: false
   });
+  
+  $('#alert').tooltipster({
+   animation: 'grow',
+   delay: 100,
+   trigger: 'custom',
+   plugins: ['sideTip'],
+   content: $('#alert__tooltip').show().detach(),
+   contentCloning: false
+  });
+  
+  setTimeout(function() {
+    
+    $('#alert').tooltipster('open').css('background', "#d50000");
+    
+    setTimeout(function() {
+      $('#alert').tooltipster('close').css('background', "");
+    }, 2300)
+    
+  }, animationDuration + 700)
+  
 
 //when alert button is clicked, open the form
   $('#alert').click(function(){
@@ -428,12 +476,6 @@ window.onload = function onLoad() {
     var twelveHour;
     var doubleDigitMins;
 
-    //workaround .getHours timezone bug in IE and Edge
-    if (isIE || isEdge) {
-      var timezoneDiff = Math.floor(date.getTimezoneOffset() / 60);
-      fullHour -= timezoneDiff;
-    }
-
     //set AM or PM and convert .getHours to 12-hour time.
     if (fullHour > 11){
       amOrPm = 'PM';
@@ -456,7 +498,7 @@ window.onload = function onLoad() {
 
     var lastBackupString =
       '' + (date.getMonth() + 1) + '/'
-      + (date.getDate() + 1) + '/'
+      + (date.getDate()) + '/'
       + date.getFullYear().toString().slice(-2) + ' · '
       + twelveHour + ':'
       + doubleDigitMins
@@ -488,26 +530,7 @@ window.onload = function onLoad() {
     //set monthlyBalIteration to appropriate month based on client's starting month
     var monthlyBalIteration = (clientData.startingMonth + i) < 12 ? clientData.startingMonth + i : clientData.startingMonth + i - 12;
 
-    //set month names based on client starting month
-    function getMonthName () {
-      switch (monthlyBalIteration) {
-        case 0: return 'JAN';
-        case 1: return 'FEB';
-        case 2: return 'MAR';
-        case 3: return 'APR';
-        case 4: return 'MAY';
-        case 5: return 'JUN';
-        case 6: return 'JUL';
-        case 7: return 'AUG';
-        case 8: return 'SEP';
-        case 9: return 'OCT';
-        case 10: return 'NOV';
-        case 11: return 'DEC';
-        default: return 'err'
-      }
-    }
-
-    var monthName = getMonthName();
+    var monthName = MONTHS[monthlyBalIteration];
 
     $('#month__name' + i).html(monthName);
 
@@ -527,12 +550,10 @@ window.onload = function onLoad() {
         step: function(state, circle) {
 
           var value = Math.round(circle.value() * clientData.monthlyHours);
-          if (value === 0 && monthlyBalIteration <= currentMonth && monthlyBalIteration >= clientData.startingMonth) { //if hours used is 0 and month has already occured in current billing year.
-            circle.setText('0');
-          } else if (value === 0) {
-            circle.setText('-');
-          } else {
+          if (monthlyBalIteration <= currentMonth && monthlyBalIteration >= clientData.startingMonth) { //if hours used is 0 and month has already occured in current billing year.
             circle.setText(value);
+          } else {
+            circle.setText('-');
           }
 
         }
