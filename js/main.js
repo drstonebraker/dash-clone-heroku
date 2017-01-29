@@ -1,7 +1,7 @@
-/*global $*/
+/*global $ WhichBrowser ProgressBar*/
 
 var today = new Date();
-var currentMonth = Math.floor(Math.random() * 12); //today.getMonth();
+var currentMonth = today.getMonth();
 const BACKUP_OPTIONS = [1, 7, 14, 30]; //num of days between each backup... used to randomly set date for demonstration
 var demonstration = true; // to turn off some logic intended only for showing random client data
 
@@ -20,71 +20,68 @@ const MONTHS = [
   'DEC'
 ];
 
-/* ==========================================================================
+var clientData = new function() {
+  this.currentMonthIndex = function() {
+    return (currentMonth - this.startingMonth + 12) % 12;
+  };
+  
+  if (demonstration) { //this randomized clientData for demonstrtion purposes so that different dats can be seen on each refresh
+    this.startingMonth = Math.floor(Math.random() * 12); //jan=0, feb=1...
+    this.monthlyHours = Math.floor(Math.random() * 9) + 3;
+    
+    this.monthlyBal = new Array(12).fill().map(function(hours, month) {
+      if ((month - this.startingMonth + 12) % 12 <= this.currentMonthIndex()) { //if month is between starting month and current month
+        return Math.floor(Math.random() * (this.monthlyHours + 1));
+      }
+    }, this);
+
+    if (this.monthlyBal.indexOf(this.monthlyHours) == -1) { //if there is not already a month of full hours
+      var numOfMonths = (currentMonth - this.startingMonth + 12) % 12 + 1;
+      var randomPicker = Math.floor(Math.random() * numOfMonths);
+      var randomMonth = (this.startingMonth + randomPicker) % 12;
+      //set one random month to full usage (so annual usage makes sense)
+      this.monthlyBal[randomMonth] = this.monthlyHours;
+    } 
+  
+    this.annualHours = 12 * (Math.floor(Math.random() * 4) + 1);
+    this.annualBal = Math.floor(Math.random() * this.annualHours) + 1;
+    this.backupFrequency = BACKUP_OPTIONS[Math.floor(Math.random() * BACKUP_OPTIONS.length)];
+    this.lastBackup = new Date(Math.floor(Math.random() * 86400000 * this.backupFrequency) + (Date.now() - 86400000 * this.backupFrequency));
+    
+  } else { //not a demonstration... change these variables directly
+  
+  /* ==========================================================================
    USE THESE VARS TO CONFIGURE DASHBOARD FOR INDIVIDUAL CLIENT
    ========================================================================== */
-var animationDuration = 1500;
-var animationEasing = "easeOut";
-
-var clientData = new function() {
-  this.startingMonth = Math.floor(Math.random() * 12); //jan=0, feb=1...
-  this.monthlyHours = Math.floor(Math.random() * 9) + 3;
+    this.startingMonth = 3; //jan=0, feb=1...
+    this.monthlyHours = 6;
+    
+    this.monthlyBal = [ //sets balances for each month in order
+      0, //jan
+      0, //feb
+      0, //mar
+      4, //apr
+      0, //may
+      2, //jun
+      6, //jul
+      5, //aug
+      0, //sep
+      0, //oct
+      0,//nov
+      0 //dec
+    ];
   
-  function setMonthlyBal(month) {
-    console.log("setMonthlyBal("+month+")");
-    console.log(".map(function("+month+"))");
-    console.log("(month - this.startingMonth + 12) % 12: " + ((month - this.startingMonth + 12) % 12));
-    console.log(">= 0: ");
-    console.log((month - this.startingMonth + 12) % 12 >= 0);
-    console.log("(month - this.startingMonth + 12) % 12) <= 12 - this.startingMonth + currentMonth: " + (12 - this.startingMonth + currentMonth));
-    console.log(((month - this.startingMonth + 12) % 12) <= 12 - this.startingMonth + currentMonth);
-    console.log("(month - this.startingMonth + 12) % 12 <= (currentMonth - this.startingMonth + 12) % 12: " + (currentMonth - this.startingMonth + 12));
-    console.log((month - this.startingMonth + 12) % 12 <= (currentMonth - this.startingMonth + 12) % 12);
-    if (
-      //(month - this.startingMonth + 12) % 12 >= 0 &&
-      //(month - this.startingMonth + 12) % 12 <= 12 - this.startingMonth + currentMonth && 
-      (month - this.startingMonth + 12) % 12 <= (currentMonth - this.startingMonth + 12) % 12
-      ) { //if month is between starting month and current month
-      var result = Math.floor(Math.random() * (this.monthlyHours + 1));
-      console.log(result);
-      return result;
-    }
+    this.annualHours = 36;
+    this.annualBal = 17;
+    this.backupFrequency = 30;
+    this.lastBackup = new Date('2015-12-14T07:32:00Z');
   }
   
-  this.monthlyBal = [ //sets balances for each month in order
-    demonstration ? setMonthlyBal.call(this, 0) : 0, //jan
-    demonstration ? setMonthlyBal.call(this, 1) : 0, //feb
-    demonstration ? setMonthlyBal.call(this, 2) : 0, //mar
-    demonstration ? setMonthlyBal.call(this, 3) : 0, //apr
-    demonstration ? setMonthlyBal.call(this, 4) : 0, //may
-    demonstration ? setMonthlyBal.call(this, 5) : 0, //jun
-    demonstration ? setMonthlyBal.call(this, 6) : 0, //jul
-    demonstration ? setMonthlyBal.call(this, 7) : 0, //aug
-    demonstration ? setMonthlyBal.call(this, 8) : 0, //sep
-    demonstration ? setMonthlyBal.call(this, 9) : 0, //oct
-    demonstration ? setMonthlyBal.call(this, 10) : 0,//nov
-    demonstration ? setMonthlyBal.call(this, 11) : 0 //dec
-  ];
-  
-  if (demonstration && this.monthlyBal.indexOf(this.monthlyHours) == -1) { //if there is not already a month of full hours
-    var numOfMonths = (currentMonth - this.startingMonth + 12) % 12 + 1;
-    var randomPicker = Math.floor(Math.random() * numOfMonths);
-    var randomMonth = (this.startingMonth + randomPicker) % 12;
-    console.log("randomMonth: " + randomMonth);
-    this.monthlyBal[randomMonth] = this.monthlyHours;
-  } //for demonstration purposes, set one random month to full usage (so annual usage makes sense)
-
-  this.annualHours = 12 * (Math.floor(Math.random() * 4) + 1);
-  this.annualBal = Math.floor(Math.random() * this.annualHours) + 1;
-  this.backupFrequency = BACKUP_OPTIONS[Math.floor(Math.random() * BACKUP_OPTIONS.length)];
-  this.lastBackup = new Date(Math.floor(Math.random() * 86400000 * this.backupFrequency) + (Date.now() - 86400000 * this.backupFrequency));
-  this.monthlyBenefits = '';
+  this.monthlyBenefits = "<h4>Your subscription plan includes:</h4><ul><li>" + this.monthlyHours + " hours of work each month</li><li>" + this.annualHours + " additional hours of work each year (" + MONTHS[this.startingMonth] + " through " + (MONTHS[this.startingMonth - 1] || "DEC") + ")</li><li>Automatic backup every " + this.backupFrequency + " days</li></ul></br>";
 };
-var monthlyBenefits = "<h4>Your subscription plan includes:</h4><ul><li>" + clientData.monthlyHours + " hours of work each month</li><li>" + clientData.annualHours + " additional hours of work each year (" + MONTHS[clientData.startingMonth] + " through " + (MONTHS[clientData.startingMonth - 1] || "DEC") + ")</li><li>Automatic backup every " + clientData.backupFrequency + " days</li></ul></br>";
-console.log("currentMonth: " + MONTHS[currentMonth]);
-console.log(clientData.monthlyBal);
 
-
+var animationDuration = 1500;
+var animationEasing = "easeOut";
 //*********************************
 // END OF CONFIGURABLE VARS
 //*********************************
@@ -293,7 +290,7 @@ function detectForMe(onSubmit) {
 $( document ).ready(function() {
   
   //when benefits button is clicked, open the tooltip
-  $('#benefits__content').html(monthlyBenefits);
+  $('#benefits__content').html(clientData.monthlyBenefits);
   $('#benefits').tooltipster({
    animation: 'fade',
    delay: 100,
@@ -352,7 +349,7 @@ $( document ).ready(function() {
     } else {
       $('#alert-glyph').css('transform', 'translateX(0px)');
     }
-  })
+  });
 
   //if IE, workaround bug to check radio inputs on button click
   if (isIE) {
@@ -536,13 +533,7 @@ window.onload = function onLoad() {
   $('#backup__datetime').html(getlastBackupString(clientData.lastBackup));
 
   //set stroke width to 6 if browser is IE (to workaround bug)
-  if (isIE || isEdge) {
-    var strokeWidth = 6;
-    } else {
-    var strokeWidth = 15;
-  }
-
-
+  var strokeWidth = isIE || isEdge ? 6 : 15;
 
 
   /* ==========================================================================
@@ -590,7 +581,7 @@ window.onload = function onLoad() {
 
   }
 
-  $.each($('.month'), updateMonths)
+  $.each($('.month'), updateMonths);
 
   /* ==========================================================================
      UPDATE ANNUAL DATA
