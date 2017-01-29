@@ -1,7 +1,9 @@
+/*global $*/
+
 var today = new Date();
-var currentMonth = today.getMonth();
-const BACKUP_OPTIONS = [1, 7, 14, 30] //num of days between each backup... used to randomly set date for demonstration
-var demonstration = true // to turn off some logic intended only for showing random client data
+var currentMonth = Math.floor(Math.random() * 12); //today.getMonth();
+const BACKUP_OPTIONS = [1, 7, 14, 30]; //num of days between each backup... used to randomly set date for demonstration
+var demonstration = true; // to turn off some logic intended only for showing random client data
 
 const MONTHS = [
   'JAN',
@@ -16,7 +18,7 @@ const MONTHS = [
   'OCT',
   'NOV',
   'DEC'
-]
+];
 
 /* ==========================================================================
    USE THESE VARS TO CONFIGURE DASHBOARD FOR INDIVIDUAL CLIENT
@@ -27,28 +29,49 @@ var animationEasing = "easeOut";
 var clientData = new function() {
   this.startingMonth = Math.floor(Math.random() * 12); //jan=0, feb=1...
   this.monthlyHours = Math.floor(Math.random() * 9) + 3;
+  
   function setMonthlyBal(month) {
-    if (month <= currentMonth && month >= this.startingMonth) {
-      return Math.floor(Math.random() * (this.monthlyHours + 1))
+    console.log("setMonthlyBal("+month+")");
+    console.log(".map(function("+month+"))");
+    console.log("(month - this.startingMonth + 12) % 12: " + ((month - this.startingMonth + 12) % 12));
+    console.log(">= 0: ");
+    console.log((month - this.startingMonth + 12) % 12 >= 0);
+    console.log("(month - this.startingMonth + 12) % 12) <= 12 - this.startingMonth + currentMonth: " + (12 - this.startingMonth + currentMonth));
+    console.log(((month - this.startingMonth + 12) % 12) <= 12 - this.startingMonth + currentMonth);
+    console.log("(month - this.startingMonth + 12) % 12 <= (currentMonth - this.startingMonth + 12) % 12: " + (currentMonth - this.startingMonth + 12));
+    console.log((month - this.startingMonth + 12) % 12 <= (currentMonth - this.startingMonth + 12) % 12);
+    if (
+      //(month - this.startingMonth + 12) % 12 >= 0 &&
+      //(month - this.startingMonth + 12) % 12 <= 12 - this.startingMonth + currentMonth && 
+      (month - this.startingMonth + 12) % 12 <= (currentMonth - this.startingMonth + 12) % 12
+      ) { //if month is between starting month and current month
+      var result = Math.floor(Math.random() * (this.monthlyHours + 1));
+      console.log(result);
+      return result;
     }
-  };
+  }
+  
   this.monthlyBal = [ //sets balances for each month in order
-    setMonthlyBal.call(this, 0), //jan
-    setMonthlyBal.call(this, 1), //feb
-    setMonthlyBal.call(this, 2), //mar
-    setMonthlyBal.call(this, 3), //apr
-    setMonthlyBal.call(this, 4), //may
-    setMonthlyBal.call(this, 5), //jun
-    setMonthlyBal.call(this, 6), //jul
-    setMonthlyBal.call(this, 7), //aug
-    setMonthlyBal.call(this, 8), //sep
-    setMonthlyBal.call(this, 9), //oct
-    setMonthlyBal.call(this, 10),//nov
-    setMonthlyBal.call(this, 11) //dec
+    demonstration ? setMonthlyBal.call(this, 0) : 0, //jan
+    demonstration ? setMonthlyBal.call(this, 1) : 0, //feb
+    demonstration ? setMonthlyBal.call(this, 2) : 0, //mar
+    demonstration ? setMonthlyBal.call(this, 3) : 0, //apr
+    demonstration ? setMonthlyBal.call(this, 4) : 0, //may
+    demonstration ? setMonthlyBal.call(this, 5) : 0, //jun
+    demonstration ? setMonthlyBal.call(this, 6) : 0, //jul
+    demonstration ? setMonthlyBal.call(this, 7) : 0, //aug
+    demonstration ? setMonthlyBal.call(this, 8) : 0, //sep
+    demonstration ? setMonthlyBal.call(this, 9) : 0, //oct
+    demonstration ? setMonthlyBal.call(this, 10) : 0,//nov
+    demonstration ? setMonthlyBal.call(this, 11) : 0 //dec
   ];
-
-  if (demonstration && this.monthlyBal.indexOf(this.monthlyHours) == -1) {
-    this.monthlyBal[Math.floor(Math.random() * (currentMonth - this.startingMonth)) + this.startingMonth] = this.monthlyHours
+  
+  if (demonstration && this.monthlyBal.indexOf(this.monthlyHours) == -1) { //if there is not already a month of full hours
+    var numOfMonths = (currentMonth - this.startingMonth + 12) % 12 + 1;
+    var randomPicker = Math.floor(Math.random() * numOfMonths);
+    var randomMonth = (this.startingMonth + randomPicker) % 12;
+    console.log("randomMonth: " + randomMonth);
+    this.monthlyBal[randomMonth] = this.monthlyHours;
   } //for demonstration purposes, set one random month to full usage (so annual usage makes sense)
 
   this.annualHours = 12 * (Math.floor(Math.random() * 4) + 1);
@@ -58,6 +81,9 @@ var clientData = new function() {
   this.monthlyBenefits = '';
 };
 var monthlyBenefits = "<h4>Your subscription plan includes:</h4><ul><li>" + clientData.monthlyHours + " hours of work each month</li><li>" + clientData.annualHours + " additional hours of work each year (" + MONTHS[clientData.startingMonth] + " through " + (MONTHS[clientData.startingMonth - 1] || "DEC") + ")</li><li>Automatic backup every " + clientData.backupFrequency + " days</li></ul></br>";
+console.log("currentMonth: " + MONTHS[currentMonth]);
+console.log(clientData.monthlyBal);
+
 
 //*********************************
 // END OF CONFIGURABLE VARS
@@ -292,9 +318,9 @@ $( document ).ready(function() {
     
     setTimeout(function() {
       $('#alert').tooltipster('close').css('background', "");
-    }, 2300)
+    }, 2300);
     
-  }, animationDuration + 700)
+  }, animationDuration + 700);
   
 
 //when alert button is clicked, open the form
@@ -344,7 +370,7 @@ $( document ).ready(function() {
     });
   }
 
-  jQuery.fn.extend({
+  $.fn.extend({
     isDisabled: function() {
       return $(this).hasClass('u_disabled');
     },
@@ -467,7 +493,7 @@ $( document ).ready(function() {
 window.onload = function onLoad() {
 
   //highlight current month
-  $('#month--' + (currentMonth - clientData.startingMonth)).addClass('month--current');
+  $('#month--' + ((currentMonth - clientData.startingMonth + 12) % 12)).addClass('month--current');
 
   //fill last backup date & time
   function getlastBackupString(date) {
@@ -528,7 +554,7 @@ window.onload = function onLoad() {
 
   function updateMonths (i, val) {
     //set monthlyBalIteration to appropriate month based on client's starting month
-    var monthlyBalIteration = (clientData.startingMonth + i) < 12 ? clientData.startingMonth + i : clientData.startingMonth + i - 12;
+    var monthlyBalIteration = (clientData.startingMonth + i) % 12;
 
     var monthName = MONTHS[monthlyBalIteration];
 
@@ -550,7 +576,7 @@ window.onload = function onLoad() {
         step: function(state, circle) {
 
           var value = Math.round(circle.value() * clientData.monthlyHours);
-          if (monthlyBalIteration <= currentMonth && monthlyBalIteration >= clientData.startingMonth) { //if hours used is 0 and month has already occured in current billing year.
+          if ((monthlyBalIteration - clientData.startingMonth + 12) % 12 <= (currentMonth - clientData.startingMonth + 12) % 12) { //if month has already occurred in current billing year
             circle.setText(value);
           } else {
             circle.setText('-');
